@@ -4,7 +4,8 @@ import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import {MainLoadModule} from './main-load/main-load.module';
-import {TopMenuModule} from './top-menu/top-menu.module'
+import {TopMenuModule} from './top-menu/top-menu.module';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -15,7 +16,8 @@ import {TopMenuModule} from './top-menu/top-menu.module'
     RouterModule,
     BrowserAnimationsModule,
     MainLoadModule,
-    TopMenuModule
+    TopMenuModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

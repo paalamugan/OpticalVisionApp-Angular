@@ -8,6 +8,7 @@
     font-weight: bold;
     color: white;
     font-family: -webkit-body;
+    margin-top: 20px;
 }
 .forget{
     color: dodgerblue;
@@ -22,6 +23,14 @@
     color: dodgerblue;
    
 }
+div > span {
+    font-size: 0.75rem;
+    color: firebrick;
+}
+.is-invalid{
+    font-size: 0.75rem;
+    color: firebrick;
+}
 .form_bottom{
     margin: 20px 0px;
 }
@@ -29,6 +38,9 @@
     height: 100vh;
     background-color:#e0e0e0;
     }
+   .cursor{
+       cursor: pointer;
+   }
 @media only screen and (min-width: 1281px) {
   
    .opticvision_1{

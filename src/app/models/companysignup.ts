@@ -7,5 +7,6 @@ export class CompanySignup{
         public password:string,
         public address:string,
         public phonenumber:string,
+        public userImage:string
         ){}
 }

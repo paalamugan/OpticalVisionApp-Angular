@@ -37,7 +37,6 @@ this.adminhide=false;
        (res:any)=>{
          localStorage.setItem('token',res.token);
          this.router.navigate(['/optical/dashboard']);
-         
        },
        err =>{
          if(err instanceof HttpErrorResponse){
@@ -56,6 +55,7 @@ this.adminhide=false;
     .subscribe(
      (res:any)=>{
        localStorage.setItem('token',res.token);
+       console.log(res.token);
        this.router.navigate(['/optical/dashboard']);
        
      },

@@ -14,6 +14,8 @@ export class RegisterComponent implements OnInit {
   email="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$";
   hide = true;
   account_validation_messages=account_validation_messages;
+  styleOne:boolean;
+  selectedfile:File=null;
   //RegistrationForm: FormBuilder;
   constructor(private router:Router,private elem: ElementRef,private fb:FormBuilder,private signupservice:SignupService,private snackbar:MatSnackBar,private cd: ChangeDetectorRef) {
 
@@ -32,7 +34,7 @@ export class RegisterComponent implements OnInit {
     //     x => this.Registeration.controls.cnfPassword.updateValueAndValidity()
     //   );
    }
-   selectedFile:File=null;
+  
     RegistrationForm =this.fb.group({
   companyName: ['',[Validators.required]],
   tinNumber: [''],
@@ -93,13 +95,17 @@ export class RegisterComponent implements OnInit {
 	});
 }( document, window, 0 ));
   }
-
+  countfilelength:number;
   onFileChange(event) {
-    console.log(event);
-    // this.selectedFile=<File>event.target.files[0];
+   // let count=<File>event.target.files
+   this.styleOne=true;
+   this.countfilelength=event.target.files.length;
+     this.selectedfile=<File>event.target.files[0];
+    
+     
     // console.log(this.selectedFile)
-    
-    
+    // let inputEl: HTMLInputElement = this.elem.nativeElement.querySelector('#file-7');
+    // console.log(inputEl.files.item(0));
    // this.RegistrationForm.getValue('photo').value
     // const reader = new FileReader();
  
@@ -117,24 +123,13 @@ export class RegisterComponent implements OnInit {
     //   };
     // }
   }
-  
   signUp(){
-    // const fd=new FormData();
-    // fd.append('photo',this.selectedFile,this.selectedFile.name);
-    // console.log(fd);
-    // this.RegistrationForm.patchValue({
-    //   photo:fd
-    // })
-    let inputEl: HTMLInputElement = this.elem.nativeElement.querySelector('#file-7');
-    //get the total amount of files attached to the file input.
-        let fileCount: number = inputEl.files.length;
-        console.log(inputEl);
-    //create a new fromdata instance
-        let formData = new FormData();
-    //check if the filecount is greater than zero, to be sure a file was selected.
-        if (fileCount > 0) { // a file was selected
-            //append the key name 'photo' with the first file in the element
-                formData.append('userImage', inputEl.files.item(0));
+   let formData = new FormData();
+       
+   
+       // if ( this.countfilelength >= 0) { 
+            
+                formData.append('userImage', this.selectedfile);
                 formData.append('companyName', this.RegistrationForm.value.companyName);
                 formData.append('tinNumber', this.RegistrationForm.value.tinNumber);
                 formData.append('userName', this.RegistrationForm.value.userName);
@@ -143,20 +138,10 @@ export class RegisterComponent implements OnInit {
                 formData.append('cnfPassword', this.RegistrationForm.value.cnfPassword);
                 formData.append('address', this.RegistrationForm.value.address);
                 formData.append('phoneNumber', this.RegistrationForm.value.phoneNumber);
-                console.log(formData);
-        }else{
-                formData.append('userImage', null);
-                formData.append('companyName', this.RegistrationForm.value.companyName);
-                formData.append('tinNumber', this.RegistrationForm.value.tinNumber);
-                formData.append('userName', this.RegistrationForm.value.userName);
-                formData.append('email', this.RegistrationForm.value.email);
-                formData.append('password', this.RegistrationForm.value.password);
-                formData.append('cnfPassword', this.RegistrationForm.value.cnfPassword);
-                formData.append('address', this.RegistrationForm.value.address);
-                formData.append('phoneNumber', this.RegistrationForm.value.phoneNumber);
-        }
+               
+     //   }
         
-        console.log(formData);
+      
     // let files=this.elem.nativeElement.querySelector('#selectedFile').files;
     // let fb=new FormData();
     // let file= files[0];
@@ -167,10 +152,9 @@ export class RegisterComponent implements OnInit {
       this.signupservice.submitRegister(formData)
       .subscribe(
         (response)=>{
-       
-          // this.RegistrationForm.reset();
-          
-          this.snackbar.open("Registration Success", "Success", {
+          this.styleOne=false;
+           this.selectedfile=null;
+            this.snackbar.open("Registration Success", "Success", {
             duration: 2000,
                   });
         },

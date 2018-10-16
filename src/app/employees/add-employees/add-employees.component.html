@@ -9,7 +9,7 @@
   
         <form (ngSubmit)="onSubmit()" fxLayout="column" class="example-container" >
           <mat-form-field class="example-container">
-            <input matInput type="text" [(ngModel)]="employee.employeeName" name="name" #name="ngModel" required minlength="4">
+            <input matInput type="text" placeholder="EmployeeName" [(ngModel)]="employee.employeeName" name="name" #name="ngModel" required minlength="4">
           </mat-form-field>
   
           <div  style="color:red" *ngIf="name.invalid && (name.dirty || name.touched)" class="mat-body-1 center-align">
@@ -22,7 +22,7 @@
             </div>
           </div>
           <mat-form-field class="example-container">
-              <input matInput type="text" [(ngModel)]="employee.mobileNumber" name="name" #name="ngModel" required minlength="4">
+              <input matInput type="text" placeholder="MobileNumber" [(ngModel)]="employee.mobileNumber" name="name" #name="ngModel" required minlength="4">
             </mat-form-field>
     
             <div  style="color:red" *ngIf="name.invalid && (name.dirty || name.touched)" class="mat-body-1 center-align">
@@ -35,7 +35,7 @@
               </div>
             </div>
             <mat-form-field class="example-container">
-                <input matInput type="text" [(ngModel)]="employee.employeeEmail" name="name" #name="ngModel" required minlength="4">
+                <input matInput type="text" placeholder="Email" [(ngModel)]="employee.employeeEmail" name="name" #name="ngModel" required minlength="4">
               </mat-form-field>
       
               <div  style="color:red" *ngIf="name.invalid && (name.dirty || name.touched)" class="mat-body-1 center-align">
@@ -48,7 +48,7 @@
                 </div>
               </div>
           <mat-form-field>
-            <input matInput type="number"  [(ngModel)]="employee.employeePassword"  name="number" #number="ngModel" required minlength="10">
+            <input matInput type="number"  placeholder="Password" [(ngModel)]="employee.employeePassword"  name="number" #number="ngModel" required minlength="10">
           </mat-form-field>
           <div  style="color:red" *ngIf="number.invalid && (number.dirty || number.touched)"
           >

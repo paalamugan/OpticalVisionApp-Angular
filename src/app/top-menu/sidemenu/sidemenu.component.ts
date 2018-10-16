@@ -21,7 +21,7 @@ export class SidemenuComponent implements OnInit {
     this.loginservice.getUserName().subscribe(
       (data:Admin)=>{
         console.log(this.admin);
-      if(data.admin === this.admin){
+      if(data.Identifier === this.admin){
         this.menus=adminmenus;
       }else{
         this.employeemenus = Employee_menus;

@@ -1,5 +1,9 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit,Input, AfterViewInit } from '@angular/core';
 import { MediaChange, ObservableMedia } from '@angular/flex-layout';
+import { LoginService } from '../services/login.service';
+import { CompanySignup } from '../models/companysignup';
+import { Data } from '../models/data';
+import { Admin } from '../models/admin';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -9,7 +13,8 @@ export class MainComponent implements OnInit {
 
   @Input() isVisible : boolean = true;
   visibility = 'shown';
-
+  
+userCompanyname:string='';
   sideNavOpened: boolean = true;
   matDrawerOpened: boolean = false;
   matDrawerShow: boolean = true;
@@ -17,15 +22,21 @@ export class MainComponent implements OnInit {
 
   ngOnChanges() {
    this.visibility = this.isVisible ? 'shown' : 'hidden';
-   console.log(this.visibility);
   }
 
-	constructor(private media: ObservableMedia) { }
+
+	constructor(private media: ObservableMedia,private loginservice:LoginService,private data1:Data) { }
 
 	ngOnInit() {
+        this.loginservice.getUserName().subscribe((data:Admin)=>{
+            console.log(data);
+            this.userCompanyname=data.companyname;
+          });
+          
 		this.media.subscribe((mediaChange: MediaChange) => {
             this.toggleView();
         });
+        
 	}
     getRouteAnimation(outlet) {
 
@@ -34,6 +45,7 @@ export class MainComponent implements OnInit {
     }
 
 	toggleView() {
+      
 		if (this.media.isActive('gt-md')) {
             this.sideNavMode = 'side';
             this.sideNavOpened = true;

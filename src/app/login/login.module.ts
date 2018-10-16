@@ -9,11 +9,14 @@ import {
   MatButtonToggleModule,
   MatIconModule,
   MatInputModule,
-  MatToolbarModule
+  MatToolbarModule,MatSnackBarModule
  } from '@angular/material';
+ import {MatTabsModule} from '@angular/material/tabs';
  import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule , ReactiveFormsModule} from '@angular/forms';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptorService } from '../guards/token-interceptor.service';
 const appRoutes: Routes = [
     { path: '', component: LoginComponent },
 ]
@@ -32,8 +35,11 @@ const appRoutes: Routes = [
     MatToolbarModule,
     ReactiveFormsModule,
     MatCheckboxModule,
+    MatSnackBarModule,
+    MatTabsModule,
     RouterModule.forChild(appRoutes),
   ],
-  declarations: [LoginComponent]
+  declarations: [LoginComponent],
+  providers:[]
 })
 export class LoginModule { }

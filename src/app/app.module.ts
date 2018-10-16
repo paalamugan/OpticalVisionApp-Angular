@@ -5,7 +5,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import {MainLoadModule} from './main-load/main-load.module';
 import {TopMenuModule} from './top-menu/top-menu.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthGuard } from './guards/auth.guard';
+import { TokenInterceptorService } from './guards/token-interceptor.service';
+import { Data } from './models/data';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,9 +21,14 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     MainLoadModule,
     TopMenuModule,
-    HttpClientModule
+    HttpClientModule,
+    MDBBootstrapModule.forRoot()
   ],
-  providers: [],
+  providers: [AuthGuard,Data,{
+    provide:HTTP_INTERCEPTORS,
+    useClass:TokenInterceptorService,
+    multi:true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -20,6 +20,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 import { DashboardCrmModule } from '../dashboard-crm/dashboard-crm.module';
 
 import { TopMenuModule } from '../top-menu/top-menu.module';
+import { AuthGuard } from '../guards/auth.guard';
 @NgModule({
     imports: [
         CommonModule,
@@ -34,11 +35,17 @@ import { TopMenuModule } from '../top-menu/top-menu.module';
         PerfectScrollbarModule,
     ],
     declarations: [MainComponent],
-    providers: [
+    providers: [AuthGuard,
         {
             provide: PERFECT_SCROLLBAR_CONFIG,
             useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
-        }
+        },
+        // {
+        //     provide:HTTP_INTERCEPTORS,
+        //     useClass:TokenInterceptorService,
+        //     multi:true
+        //   }
+       
     ]
 })
 export class MainModule { }

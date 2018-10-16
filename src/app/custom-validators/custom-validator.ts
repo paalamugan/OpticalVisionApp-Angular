@@ -89,15 +89,16 @@ export function passValidator(control: AbstractControl) {
     ],
     'password': [
       { type: 'required', message: 'Password is required' },
-      { type: 'minlength', message: 'Password must be at least 5 characters long' },
-      { type: 'pattern', message: 'Your password must contain at least one uppercase, one lowercase, and one number' }
+      { type: 'minlength', message: 'Password must be at least 3 characters long' },
+      { type: 'pattern', message: 'Your password must contain Character Only' }
     ],
     'address':[
         { type: 'required', message: 'Address is required' },
     ],
     'phonenumber':[
         { type: 'required', message: 'phoneNumber is required' },
-        { type: 'pattern', message: 'must be a numbers only' },
+        { type: 'minlength', message: 'phoneNumber must be a 10 Digit long' },
+        { type: 'pattern', message: 'Your phoneNumber must contain Numbers Only' },
     ],
     'terms': [
       { type: 'pattern', message: 'You must accept terms and conditions' }

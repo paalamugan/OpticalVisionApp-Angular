@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {  AdminLogin,EmployeeLogin } from '../models/login';
+import { LoginService } from '../services/login.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-login',
@@ -11,8 +15,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit {
   hide = true;
   emailname:string;
+  adminlogin:AdminLogin=new AdminLogin('','');
+  employeelogin:EmployeeLogin=new EmployeeLogin('','');
 adminhide:boolean=true;
-  constructor(private router: Router) {
+  constructor(private router: Router,private loginservice:LoginService,private snackBar:MatSnackBar) {
   }
 
   ngOnInit() {
@@ -20,14 +26,51 @@ adminhide:boolean=true;
   }
 
   admin(){
-    this.adminhide=true;
+  this.adminhide=true;
   }
   employee(){
 this.adminhide=false;
   }
-  loginUser() {
-    this.router.navigate(['/optical/dashboard']);
+  loginAdmin() {
+    this.loginservice.adminLogin(this.adminlogin)
+      .subscribe(
+       (res:any)=>{
+         localStorage.setItem('token',res.token);
+         this.router.navigate(['/optical/dashboard']);
+         
+       },
+       err =>{
+         if(err instanceof HttpErrorResponse){
+           if(err.status === 401){
+               this.snackBar.open(err.error,'Alert' ,{
+                 duration:3000
+              });
+           }
+         }
+        
+       }
+      );
   }
+  loginEmployee() {
+    this.loginservice.adminLogin(this.adminlogin)
+    .subscribe(
+     (res:any)=>{
+       localStorage.setItem('token',res.token);
+       this.router.navigate(['/optical/dashboard']);
+       
+     },
+     err =>{
+       if(err instanceof HttpErrorResponse){
+         if(err.status === 401){
+             this.snackBar.open(err.error,'Alert' ,{
+               duration:3000
+            });
+         }
+       }
+      
+     }
+    );
+}
   signup(){
     this.router.navigate(['/register']);
   }

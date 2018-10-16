@@ -19,6 +19,7 @@ export const appRoutes: Routes = [
     DashboardWidgetModule
   ],
   declarations: [DashboardCrmComponent],
-  exports: [ ]
+  exports: [ ],
+  providers:[]
 })
 export class DashboardCrmModule { }

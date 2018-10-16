@@ -1,4 +1,4 @@
-export const menus = [
+export const adminmenus = [
     {
         'name': 'Dashboard',
         'icon': 'dashboard',
@@ -15,7 +15,45 @@ export const menus = [
                 'Tooltip':'DashBoard'
             }
         ]
-    }
+    },
+    {
+        'name'   : 'Employees',
+        'icon'   : 'person',
+        'open'   : false,
+        'link'   : false,
+        'sub'    :  [
+                        {
+                            'name': 'Add Employee',
+                            'icon': 'person_add',
+                            'open'   : false,
+                            'link':'employees/addemployees'
+                        },
+                        {
+                            'name': 'List Employee',
+                            'icon': 'people',
+                            'open'   : false,
+                            'link':'employees/listemployees'
+                        }
+                    ]
+    },
+]
+    export const Employee_menus = [
+        
+       {
+            'name'   : 'Employees',
+            'icon'   : 'mode_edit',
+            'open'   : false,
+            'link'   : false,
+            'sub'    :  [
+                            {
+                                'name': 'List Employee',
+                                'icon': 'text_fields',
+                                'open'   : false,
+                                'link':'employees/listemployees'
+                            }
+                        ]
+        },
+    
     // {
     //     'name': 'Material Widget',
     //     'icon': 'widgets',
@@ -145,26 +183,7 @@ export const menus = [
     //         },
     //     ]
     // },
-    // {
-    //     'name'   : 'Forms',
-    //     'icon'   : 'mode_edit',
-    //     'open'   : false,
-    //     'link'   : false,
-    //     'sub'    :  [
-    //                     {
-    //                         'name': 'Template Driven',
-    //                         'icon': 'mode_edit',
-    //                         'open'   : false,
-    //                         'link':'forms/template_forms'
-    //                     },
-    //                     {
-    //                         'name': 'Reactive Forms',
-    //                         'icon': 'text_fields',
-    //                         'open'   : false,
-    //                         'link':'forms/reactive_forms'
-    //                     }
-    //                 ]
-    // },
+    
     // {
     //     'name': 'Tables',
     //     'icon': 'list',

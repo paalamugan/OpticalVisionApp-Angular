@@ -10,6 +10,9 @@ import {
   MatInputModule,
   MatToolbarModule
  } from '@angular/material';
+ import { MDBBootstrapModule } from 'angular-bootstrap-md';
+ import {MatTabsModule} from '@angular/material/tabs';
+ import {MatSnackBarModule} from '@angular/material/snack-bar';
  import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule , ReactiveFormsModule} from '@angular/forms';
@@ -32,6 +35,9 @@ const appRoutes: Routes = [
   FormsModule,
   ReactiveFormsModule,
   FlexLayoutModule,
+  MatSnackBarModule,
+  MatTabsModule,
+  MDBBootstrapModule.forRoot(),
     RouterModule.forChild(appRoutes),
   ],
   declarations: [RegisterComponent]

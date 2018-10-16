@@ -8,42 +8,44 @@
 						
 					</mat-card-title>
 					<mat-card-content class="opticvision_1">
-						<div fxLayout="row" fxLayoutAlign="start start" fxLayout.xs="column" fxLayoutGap="20px">
+							<mat-tab-group >
+						<!-- <div fxLayout="row" fxLayoutAlign="start start" fxLayout.xs="column" fxLayoutGap="20px">
 							<div fxFlex="20">
 									<button mat-raised-button color="primary" class="login" (click)="admin()">Admin</button>
 							</div>
 							<div fxFlex="20">
 									<button mat-raised-button color="primary" class="login" (click)="employee()">Employee</button>
 							</div>
-						</div>
-						<div *ngIf="adminhide;then hasblock;else elseblock"></div>
-						<ng-template #hasblock>
+						</div> -->
+						<div>
+						<mat-tab label="Admin"> 
+					
 							<h3 class="heading_1">ADMIN BLOCK</h3>
 								<form class="example-container" fxLayout="column" fxLayoutAlign="start stretch" #userForm="ngForm">
 										<mat-form-field>
-												<input matInput placeholder="Email" #email="ngModel"  [ngModel]="emailname"  name ="email" pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" required >
+												<input matInput placeholder="Email" #adminloginemail="ngModel"  [(ngModel)]="adminlogin.email"  name ="email" pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" required >
 											
 											  </mat-form-field>
-											<span style="color:red" *ngIf="email.touched && !email.valid">
-											<div *ngIf="email.errors.required">Email is Required</div>
-											<div *ngIf="email.errors.pattern">Not a Valid Email</div>
-											</span>
+											<mat-error class="error-message" *ngIf="adminloginemail.touched && !adminloginemail.valid">
+											<mat-error  *ngIf="adminloginemail.errors.required">Email is Required</mat-error>
+											<mat-error *ngIf="adminloginemail.errors.pattern">Not a Valid Email</mat-error>
+											</mat-error>
 										<mat-form-field>
-											<input matInput placeholder="Password" type="password" name="password" #password1="ngModel" [ngModel]="passwordname" required>
+											<input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" name="password" #adminloginpass="ngModel" [(ngModel)]="adminlogin.password" required>
+											 <mat-icon class="cursor" matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon> 
 										  </mat-form-field>
-										  <span style="color:red" *ngIf="password1.touched && !password1.valid">
-												<div *ngIf="password1.errors.required">Password is Required</div>
+
+										  <mat-error class="error-message" *ngIf="adminloginpass.touched && !adminloginpass.valid">
+												<mat-error *ngIf="adminloginpass.errors.required">Password is Required</mat-error>
 									
-												</span>
+												</mat-error>
 												<div fxLayout="row" fxLayoutAlign="start none">
-													<div fxFlex="50">
-														
-													</div>
-													<div fxFlex="50" class="forget">
+													
+													<div fxFlexOffset="50" fxFlex="50" class="forget">
 														<h4 style="cursor:pointer">Forget Password?</h4>
 													</div>
 												</div>
-									<button mat-raised-button color="primary" type="submit" class="login" (click)="loginUser($event)" [disabled]="userForm.invalid">SIGN IN</button>
+									<button mat-raised-button color="primary" type="submit" class="login" (click)="loginAdmin($event)" [disabled]="userForm.invalid">SIGN IN</button>
 									<div fxLayout="row" fxLayoutAlign="center center">
 									
 											<h3 style=" color: #3f6aa7;">Or Sign Up For Admin</h3>
@@ -52,26 +54,27 @@
 									<button mat-raised-button color="primary" class="login" [disabled]="userForm.valid" (click)="signup()">Sign Up</button>
 									</div>
 								</form>
-						</ng-template>
-							<ng-template #elseblock>
+							</mat-tab>
+						</div>
+							<mat-tab label="Employee"> 
 									<h3 class="heading_1">EMPLOYEE BLOCK</h3>
-									<form class="example-container" fxLayout="column" fxLayoutAlign="start stretch" #userForm="ngForm">
+									<form class="example-container" fxLayout="column" fxLayoutAlign="start stretch" #userempForm="ngForm">
 											<mat-form-field>
-													<input matInput placeholder="Email" #email="ngModel"  [ngModel]="emailname"  name ="email" pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" required >
+													<input matInput placeholder="Email" #employeeloginemail="ngModel"  [(ngModel)]="employeelogin.email"  name ="email" pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" required >
 												
 												  </mat-form-field>
-												<span style="color:red" *ngIf="email.touched && !email.valid">
-												<div *ngIf="email.errors.required">Email is Required</div>
-												<div *ngIf="email.errors.pattern">Not a Valid Email</div>
-												</span>
+												<mat-error class="error-message" *ngIf="employeeloginemail.touched && !employeeloginemail.valid">
+												<mat-error *ngIf="employeeloginemail.errors.required">Email is Required</mat-error>
+												<mat-error *ngIf="employeeloginemail.errors.pattern">Not a Valid Email</mat-error>
+												</mat-error>
 											<mat-form-field>
-												<input matInput placeholder="Password" type="password" name="password" #password1="ngModel" [ngModel]="passwordname" required>
-												  <!-- <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>  -->
+												<input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" name="password" #employeeloginpass="ngModel" [(ngModel)]="employeelogin.password" required>
+												  <mat-icon class="cursor" matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon> 
 											  </mat-form-field>
-											  <span style="color:red" *ngIf="password1.touched && !password1.valid">
-													<div *ngIf="password1.errors.required">Password is Required</div>
+											  <mat-error class="error-message" *ngIf="employeeloginpass.touched && !employeeloginpass.valid">
+													<mat-error *ngIf="employeeloginpass.errors.required">Password is Required</mat-error>
 										
-													</span>
+													</mat-error>
 													<div fxLayout="row" fxLayoutAlign="start none">
 														<div fxFlex="50">
 															
@@ -80,11 +83,14 @@
 															<h4 style="cursor:pointer">Forget Password?</h4>
 														</div>
 													</div>
-										<button mat-raised-button color="primary" type="submit" class="login" (click)="loginUser($event)" [disabled]="userForm.invalid">SIGN IN</button>
+										<button mat-raised-button color="primary" type="submit" class="login" (click)="loginEmployee($event)" [disabled]="userempForm.invalid">SIGN IN</button>
 										
 									</form>
-							</ng-template>
 							
+									 </mat-tab>
+								
+								
+							  </mat-tab-group>
 						</mat-card-content>
 			
 			

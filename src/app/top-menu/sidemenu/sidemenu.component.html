@@ -7,7 +7,7 @@
       <div *ngIf="iconOnly" style="height: 100px;" fxLayoutAlign="space-around center"  >
           <img width="50" [style.borderRadius]="'50%'" src="./assets/camera.png">
       </div>
-      <app-sidemenu-item *ngFor="let menu of menus" [menu]="menu" [iconOnly]="iconOnly"> </app-sidemenu-item>
+      <app-sidemenu-item *ngFor="let menu of menus || employeemenus" [menu]="menu" [iconOnly]="iconOnly"> </app-sidemenu-item>
   </div>
   
 </perfect-scrollbar>

@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { Routes,RouterModule } from '@angular/router';
  
 import { MainModule } from '../main/main.module';
+import { AuthGuard } from '../guards/auth.guard';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptorService } from '../guards/token-interceptor.service';
 
 const routes: Routes = [   
     {path: 'optical', loadChildren: '../main/main.module#MainModule'},
@@ -11,9 +14,17 @@ const routes: Routes = [
     // {path: 'editor', loadChildren: '../editor/editor.module#EditorModule'},
 
     {path: '', redirectTo: 'login',pathMatch:'full'},
+    {path: '***', redirectTo: 'login',pathMatch:'full'},
 ]
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
-    exports: [RouterModule]
+    exports: [RouterModule],
+    providers:[
+    //    {
+    //    provide:HTTP_INTERCEPTORS,
+    //    useClass:TokenInterceptorService,
+    //    multi:true
+    //  }
+    ]
 })
 export class MainLoadModule { }

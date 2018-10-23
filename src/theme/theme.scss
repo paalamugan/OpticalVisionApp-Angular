@@ -26,13 +26,13 @@ $mat-light-theme-background: (
 
 @include mat-core();
 $primary : $mat-blue;
-$accent  : $mat-amber;
+$accent  : $mat-indigo;
 $warn    : $mat-red;
 
 
 
 $primary-app-primary: mat-palette($primary ,500);
-$primary-app-accent:  mat-palette($accent , A200, A100, A400);
+$primary-app-accent:  mat-palette($accent , 600);
 $primary-app-warn:    mat-palette($warn );
 $cdk-theme:   mat-light-theme($primary-app-primary, $primary-app-accent,$primary-app-warn);
 
@@ -271,4 +271,48 @@ svg {
 }
 .box{
   margin-top: 10px;
+}
+.example-h2 {
+  margin: 10px;
+}
+
+.example-section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+.example-margin {
+  margin: 0 10px;
+}
+.mat-subheading-2{
+  color: #ffffff;
+}
+.form-header {
+	background-color: #327ebd;
+	color: white;
+	padding: 0 5px;
+}
+.mat-form-field{
+	padding-left:10px;
+}
+.container{
+	padding-left:10px;
+	padding-right:10px;
+}
+.form-container {
+	padding: 5px 15px 15px 15px;
+}
+.form-component-holder {
+	border: 1px solid #327ebd;
+	background-color: white;
+}
+.button-style{
+	background-color: #327ebd;
+	font-weight: bold;
+}
+.center-align{
+	color: red;
+    padding-left: 10px;
 }

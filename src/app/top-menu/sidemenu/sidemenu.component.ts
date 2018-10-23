@@ -20,7 +20,6 @@ export class SidemenuComponent implements OnInit {
   ngOnInit() {
     this.loginservice.getUserName().subscribe(
       (data:Admin)=>{
-        console.log(this.admin);
       if(data.Identifier === this.admin){
         this.menus=adminmenus;
       }else{

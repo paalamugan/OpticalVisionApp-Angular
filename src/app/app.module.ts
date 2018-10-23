@@ -10,6 +10,8 @@ import { AuthGuard } from './guards/auth.guard';
 import { TokenInterceptorService } from './guards/token-interceptor.service';
 import { Data } from './models/data';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { AuthService } from './services/auth.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,13 +24,16 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     MainLoadModule,
     TopMenuModule,
     HttpClientModule,
+    MatProgressSpinnerModule,
     MDBBootstrapModule.forRoot()
   ],
-  providers: [AuthGuard,Data,{
+  providers: [AuthGuard,Data,
+    {
     provide:HTTP_INTERCEPTORS,
     useClass:TokenInterceptorService,
     multi:true
-  }],
+  }
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

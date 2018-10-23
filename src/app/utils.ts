@@ -2,6 +2,7 @@
 
 const API_URL = "http://localhost:9000/";
 const COMPANY_URL = API_URL + "api/visionapp/company/";
+const EMPLOYEE_URL = API_URL + "api/visionapp/employee/";
 
 const REGISTER_ACTION='register'
 const ADMIN_LOGIN_ACTION='adminlogin'
@@ -15,6 +16,7 @@ const DELETE_ACTION ="delete";
 
 export class Utils {
     /*Signupurl*/
+    public static APIURL=API_URL;
     public static getSignupURL() {
         return COMPANY_URL + REGISTER_ACTION ;
     }
@@ -31,7 +33,7 @@ export class Utils {
         return COMPANY_URL +  ADMIN_LOGIN_ACTION ;
     }
     public static employeeLoginURL() {
-        return COMPANY_URL +  EMPLOYEE_LOGIN_ACTION ;
+        return EMPLOYEE_URL +  EMPLOYEE_LOGIN_ACTION ;
     }
     public static getUserNameURL() {
         return COMPANY_URL +  USERNAME_ACTION ;
@@ -44,5 +46,20 @@ public static loggedIn(){
 public static getToken(){
     return localStorage.getItem('token');
 }   
+
+//employee details
+public static addemployeeURL() {
+    return EMPLOYEE_URL + ADD_ACTION;
+}
+public static getemployeeURL() {
+    return EMPLOYEE_URL +  GET_ACTION ;
+}
+public static updateemployeeURL() {
+    return EMPLOYEE_URL + UPDATE_ACTION ;
+}
+
+public static getAllemployeeURL() {
+    return EMPLOYEE_URL;
+}
 
 }

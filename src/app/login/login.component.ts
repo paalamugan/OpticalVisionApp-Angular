@@ -5,6 +5,7 @@ import {  AdminLogin,EmployeeLogin } from '../models/login';
 import { LoginService } from '../services/login.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
   adminlogin:AdminLogin=new AdminLogin('','');
   employeelogin:EmployeeLogin=new EmployeeLogin('','');
 adminhide:boolean=true;
-  constructor(private router: Router,private loginservice:LoginService,private snackBar:MatSnackBar) {
+  constructor(private router: Router,private loginservice:LoginService,private auth:AuthService,private snackBar:MatSnackBar) {
   }
 
   ngOnInit() {
@@ -37,6 +38,7 @@ this.adminhide=false;
        (res:any)=>{
          localStorage.setItem('token',res.token);
          this.router.navigate(['/optical/dashboard']);
+         this.auth.setLoggedIn('admin');
        },
        err =>{
          if(err instanceof HttpErrorResponse){
@@ -51,13 +53,12 @@ this.adminhide=false;
       );
   }
   loginEmployee() {
-    this.loginservice.adminLogin(this.adminlogin)
+    this.loginservice.employeeLogin(this.employeelogin)
     .subscribe(
      (res:any)=>{
        localStorage.setItem('token',res.token);
-       console.log(res.token);
-       this.router.navigate(['/optical/dashboard']);
-       
+        this.router.navigate(['/optical/employees']);
+        this.auth.setLoggedIn('employee');
      },
      err =>{
        if(err instanceof HttpErrorResponse){

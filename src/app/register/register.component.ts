@@ -52,7 +52,7 @@ export class RegisterComponent implements OnInit {
   password: ['',Validators.compose([
     Validators.minLength(5),
     Validators.required,
-    Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$') //this is for the letters (both uppercase and lowercase) and numbers validation
+    // Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$') //this is for the letters (both uppercase and lowercase) and numbers validation
  ])
 ],
   cnfPassword: ['',Validators.compose([
@@ -63,7 +63,7 @@ export class RegisterComponent implements OnInit {
   phoneNumber: ['',Validators.compose([
     Validators.required,
     Validators.minLength(10),
-    Validators.pattern('^[0-9]*$') //this is for the letters (both uppercase and lowercase) and numbers validation
+    Validators.pattern('^[0-9]*$') //this is for the number with  validation
  ])],
 })
   ngOnInit() {
@@ -153,6 +153,7 @@ export class RegisterComponent implements OnInit {
       .subscribe(
         (response)=>{
           this.styleOne=false;
+          this.RegistrationForm.reset(true);
            this.selectedfile=null;
             this.snackbar.open("Registration Success", "Success", {
             duration: 2000,

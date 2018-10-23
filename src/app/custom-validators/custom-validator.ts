@@ -76,7 +76,7 @@ export function passValidator(control: AbstractControl) {
       { type: 'required', message: 'Username is required' },
       { type: 'minlength', message: 'Username must be at least 5 characters long' },
       { type: 'maxlength', message: 'Username cannot be more than 25 characters long' },
-      { type: 'pattern', message: 'Your username must contain only numbers and letters' },
+      { type: 'pattern', message: 'Your username must contain only letters' },
       { type: 'validUsername', message: 'Your username has already been taken' }
     ],
     'email': [
@@ -89,8 +89,8 @@ export function passValidator(control: AbstractControl) {
     ],
     'password': [
       { type: 'required', message: 'Password is required' },
-      { type: 'minlength', message: 'Password must be at least 3 characters long' },
-      { type: 'pattern', message: 'Your password must contain Character Only' }
+      { type: 'minlength', message: 'Password must be at least 5 characters long' },
+      { type: 'pattern', message: 'Your password must contain Uppercase and charactes and number Only' }
     ],
     'address':[
         { type: 'required', message: 'Address is required' },

@@ -1,6 +1,7 @@
 export class CompanySignup{
-    constructor(public id:number,
+    constructor(public uuid:string,
         public companyname:string,
+        public customid:number,
         public tin:string,
         public username:string,
         public email:string,

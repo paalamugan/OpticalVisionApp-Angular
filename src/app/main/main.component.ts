@@ -29,7 +29,6 @@ userCompanyname:string='';
 
 	ngOnInit() {
         this.loginservice.getUserName().subscribe((data:Admin)=>{
-            console.log(data);
             this.userCompanyname=data.companyname;
           });
           

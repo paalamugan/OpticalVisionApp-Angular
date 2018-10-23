@@ -26,7 +26,7 @@
 												<input matInput placeholder="Email" #adminloginemail="ngModel"  [(ngModel)]="adminlogin.email"  name ="email" pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" required >
 											
 											  </mat-form-field>
-											<mat-error class="error-message" *ngIf="adminloginemail.touched && !adminloginemail.valid">
+											<mat-error class="error-message mat-body-1 center-align" *ngIf="adminloginemail.touched && !adminloginemail.valid">
 											<mat-error  *ngIf="adminloginemail.errors.required">Email is Required</mat-error>
 											<mat-error *ngIf="adminloginemail.errors.pattern">Not a Valid Email</mat-error>
 											</mat-error>
@@ -35,7 +35,7 @@
 											 <mat-icon class="cursor" matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon> 
 										  </mat-form-field>
 
-										  <mat-error class="error-message" *ngIf="adminloginpass.touched && !adminloginpass.valid">
+										  <mat-error class="error-message mat-body-1 center-align" *ngIf="adminloginpass.touched && !adminloginpass.valid">
 												<mat-error *ngIf="adminloginpass.errors.required">Password is Required</mat-error>
 									
 												</mat-error>
@@ -63,7 +63,7 @@
 													<input matInput placeholder="Email" #employeeloginemail="ngModel"  [(ngModel)]="employeelogin.email"  name ="email" pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" required >
 												
 												  </mat-form-field>
-												<mat-error class="error-message" *ngIf="employeeloginemail.touched && !employeeloginemail.valid">
+												<mat-error class="error-message mat-body-1 center-align" *ngIf="employeeloginemail.touched && !employeeloginemail.valid">
 												<mat-error *ngIf="employeeloginemail.errors.required">Email is Required</mat-error>
 												<mat-error *ngIf="employeeloginemail.errors.pattern">Not a Valid Email</mat-error>
 												</mat-error>
@@ -71,7 +71,7 @@
 												<input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" name="password" #employeeloginpass="ngModel" [(ngModel)]="employeelogin.password" required>
 												  <mat-icon class="cursor" matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon> 
 											  </mat-form-field>
-											  <mat-error class="error-message" *ngIf="employeeloginpass.touched && !employeeloginpass.valid">
+											  <mat-error class="error-message mat-body-1 center-align" *ngIf="employeeloginpass.touched && !employeeloginpass.valid">
 													<mat-error *ngIf="employeeloginpass.errors.required">Password is Required</mat-error>
 										
 													</mat-error>
@@ -83,7 +83,7 @@
 															<h4 style="cursor:pointer">Forget Password?</h4>
 														</div>
 													</div>
-										<button mat-raised-button color="primary" type="submit" class="login" (click)="loginEmployee($event)" [disabled]="userempForm.invalid">SIGN IN</button>
+										<button mat-raised-button color="primary" type="submit" class="login" (click)="loginEmployee()" [disabled]="userempForm.invalid">SIGN IN</button>
 										
 									</form>
 							

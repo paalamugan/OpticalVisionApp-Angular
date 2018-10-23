@@ -4,8 +4,8 @@ import { DashboardCrmComponent } from '../dashboard-crm/dashboard-crm.component'
 import { AuthGuard } from '../guards/auth.guard';
 
 export const appRoutes: Routes = [{
-    path: '', component: MainComponent, canActivateChild:[AuthGuard], children: [
-        { path: 'dashboard', component: DashboardCrmComponent },
+    path: '', component: MainComponent, children: [
+        { path: 'dashboard', component: DashboardCrmComponent,canActivate:[AuthGuard] },
         { path: 'employees', loadChildren: '../employees/employees.module#EmployeeModule' },
      //   { path: 'tables', loadChildren: '../tables/tables.module#TablesModule' },
       //  { path: 'maps', loadChildren: '../maps/maps.module#MapsModule' },

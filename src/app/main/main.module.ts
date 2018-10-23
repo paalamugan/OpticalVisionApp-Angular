@@ -21,6 +21,9 @@ import { DashboardCrmModule } from '../dashboard-crm/dashboard-crm.module';
 
 import { TopMenuModule } from '../top-menu/top-menu.module';
 import { AuthGuard } from '../guards/auth.guard';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptorService } from '../guards/token-interceptor.service';
+import { AuthService } from '../services/auth.service';
 @NgModule({
     imports: [
         CommonModule,
@@ -35,7 +38,7 @@ import { AuthGuard } from '../guards/auth.guard';
         PerfectScrollbarModule,
     ],
     declarations: [MainComponent],
-    providers: [AuthGuard,
+    providers: [AuthService,
         {
             provide: PERFECT_SCROLLBAR_CONFIG,
             useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG

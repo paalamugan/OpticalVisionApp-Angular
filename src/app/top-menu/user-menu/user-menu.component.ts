@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 import { CompanySignup } from 'src/app/models/companysignup';
 import { Admin } from 'src/app/models/admin';
+import { Utils } from 'src/app/utils';
 
 @Component({
   selector: 'app-user-menu',
@@ -12,7 +13,9 @@ import { Admin } from 'src/app/models/admin';
 export class UserMenuComponent implements OnInit {
   isOpen: boolean = false;
    currentUser:Admin;
-   name:string='No name'
+   userimage:any;
+   name:string='No name';
+  // APIURL="http://localhost:9000/"
   @HostListener('document:click', ['$event', '$event.target'])
   onClick(event: MouseEvent, targetElement: HTMLElement) {
     if (!targetElement) {
@@ -32,9 +35,13 @@ export class UserMenuComponent implements OnInit {
   ngOnInit() {
     this.loginservice.getUserName().subscribe((data:Admin)=>{
       this.currentUser=data;
-  console.log(this.currentUser);
+      if(this.currentUser.userImage==null){
+        this.userimage=false;
+      }else{
+        this.userimage=Utils.APIURL+this.currentUser.userImage;
+      }
+ 
     });
-    console.log("currentuser",this.currentUser);
   }
   logout(){
    localStorage.removeItem('token');

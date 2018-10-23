@@ -12,11 +12,19 @@ import {
 			MatDatepickerModule
 		} from '@angular/material';
 import { MatInputModule } from '@angular/material';
+import {MatPaginatorModule} from '@angular/material';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {  ReactiveFormsModule } from '@angular/forms';
 import {MatRadioModule} from '@angular/material/radio';
 import { FormsModule }   from '@angular/forms';
 import { AddEmployeesComponent } from './add-employees/add-employees.component';
 import { ListEmployeesComponent } from './list-employees/list-employees.component';
+import { AuthGuard } from '../guards/auth.guard';
+import {MatTableModule} from '@angular/material/table';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptorService } from '../guards/token-interceptor.service';
+import {MatDialogModule} from '@angular/material/dialog';
+import { EditEmployeesComponent } from './edit-employees/edit-employees.component';
 @NgModule({
 	imports: [
 		CommonModule,
@@ -32,8 +40,20 @@ import { ListEmployeesComponent } from './list-employees/list-employees.componen
 		 FormsModule,
 		 MatRadioModule,
 		 MatDatepickerModule,
-		 MatNativeDateModule
+		 MatNativeDateModule,
+		 MatTableModule,
+		 MatSnackBarModule,
+		 MatPaginatorModule,
+		 MatDialogModule
 	],
-	declarations: [AddEmployeesComponent, ListEmployeesComponent]
+	declarations: [AddEmployeesComponent, ListEmployeesComponent,EditEmployeesComponent],
+	providers:[
+		// {
+        //     provide:HTTP_INTERCEPTORS,
+        //     useClass:TokenInterceptorService,
+        //     multi:true
+        //   }
+	],
+	entryComponents:[]
 })
 export class EmployeeModule { }

@@ -7,7 +7,7 @@ export const appRoutes: Routes = [{
     path: '', component: MainComponent, children: [
         { path: 'dashboard', component: DashboardCrmComponent,canActivate:[AuthGuard] },
         { path: 'employees', loadChildren: '../employees/employees.module#EmployeeModule' },
-     //   { path: 'tables', loadChildren: '../tables/tables.module#TablesModule' },
+        { path: 'profile', loadChildren: '../profile/profile.module#ProfileModule' },
       //  { path: 'maps', loadChildren: '../maps/maps.module#MapsModule' },
       //  { path: 'charts', loadChildren: '../charts/charts.module#ChartsModule' },
         // { path: 'chats', loadChildren: '../chats/chat.module#ChatsModule' }, // fix this

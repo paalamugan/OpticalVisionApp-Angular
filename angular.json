@@ -19,7 +19,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
-              "src/favicon.ico",
+              "src/vision.ico",
               "src/assets"
             ],
             "styles": [
@@ -29,7 +29,10 @@
               "src/theme/typography.scss"
               
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.js",
+              "node_modules/bootstrap-notify/bootstrap-notify.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -79,9 +82,12 @@
               "src/theme/theme.scss",
               "src/theme/typography.scss"
             ],
-            "scripts": [],
+            "scripts": [
+              "node_modules/jquery/dist/jquery.js",
+              "node_modules/bootstrap-notify/bootstrap-notify.js"
+            ],
             "assets": [
-              "src/favicon.ico",
+              "src/vision.ico",
               "src/assets"
             ]
           }

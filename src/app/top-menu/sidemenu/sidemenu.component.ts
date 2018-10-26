@@ -14,13 +14,16 @@ export class SidemenuComponent implements OnInit {
   public menus;
   public employeemenus;
   admin:string='admin';
+  employeeadmin:string="employee-admin";
   constructor(private loginservice:LoginService) {
    }
 
   ngOnInit() {
     this.loginservice.getUserName().subscribe(
       (data:Admin)=>{
-      if(data.Identifier === this.admin){
+      if(data.Identifier === this.admin ){
+        this.menus=adminmenus;
+      }else if(data.Identifier === this.employeeadmin){
         this.menus=adminmenus;
       }else{
         this.employeemenus = Employee_menus;

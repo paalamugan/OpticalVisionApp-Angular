@@ -12,6 +12,7 @@ const GET_ACTION = "get";
 const ADD_ACTION = "add";
 const UPDATE_ACTION = "update";
 const DELETE_ACTION ="delete";
+const FORGET_PASSWORD_ACTION ="forgetpassword";
 
 
 export class Utils {
@@ -23,7 +24,7 @@ export class Utils {
     public static addSignupURL() {
         return COMPANY_URL ;
     }
-    public static updateSignupURL() {
+    public static updateCompanyURL() {
         return COMPANY_URL + UPDATE_ACTION;
     }
 
@@ -38,6 +39,18 @@ export class Utils {
     public static getUserNameURL() {
         return COMPANY_URL +  USERNAME_ACTION ;
     }
+    public static forgetPasswordURL() {
+        return COMPANY_URL +  FORGET_PASSWORD_ACTION ;
+    }
+    public static getforgetPasswordURL() {
+        return COMPANY_URL +  FORGET_PASSWORD_ACTION ;
+    }
+    public static UpdateforgetPasswordURL() {
+        return COMPANY_URL +  FORGET_PASSWORD_ACTION;
+    }
+    
+    
+    
     
 //guard
 public static loggedIn(){

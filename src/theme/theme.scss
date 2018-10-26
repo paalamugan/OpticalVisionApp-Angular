@@ -1,3 +1,4 @@
+@import '~compass-mixins/lib/compass/css3';
 @import '~@angular/material/theming';
  @import '../app/main/main.component.scss';
  @import '../app/top-menu/sidemenu/sidemenu.component.scss';
@@ -6,7 +7,6 @@
  @import '../app/dashboard-widget/profile-card/profile-card.component.scss';
  @import '../app/dashboard-widget/round-progressbar/round-progressbar.component.scss';
  @import '../app/dashboard-widget/sales-list/sales-list.component.scss';
-
 $mat-light-theme-background: (
   status-bar: map_get($mat-grey, 300),
   app-bar:    map_get($mat-grey, 100),
@@ -130,59 +130,59 @@ body{
 
 
 
-.spinner {
-    margin: 50vh auto 0;
-    width: 70px;
-    text-align: center;
-}
+// .spinner {
+//     margin: 50vh auto 0;
+//     width: 70px;
+//     text-align: center;
+// }
 
-.spinner > div {
-  width: 18px;
-  height: 18px;
-
-
-  border-radius: 100%;
-  display: inline-block;
-  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
-  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
-}
-
-.bounce3 {
-    background-color: orange;
-}
-
-.spinner .bounce1 {
-    background-color: blue;
-  animation-delay: -0.32s;
-  animation-delay: -0.32s;
-}
-
-.spinner .bounce2 {
-    background-color: red;
-  animation-delay: -0.16s;
-  animation-delay: -0.16s;
-}
+// .spinner > div {
+//   width: 18px;
+//   height: 18px;
 
 
+//   border-radius: 100%;
+//   display: inline-block;
+//   animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+//   animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+// }
 
-@keyframes sk-bouncedelay {
-  0%, 80%, 100% { transform: scale(0) }
-  40% { transform: scale(1.0) }
-}
+// .bounce3 {
+//     background-color: orange;
+// }
 
-@keyframes sk-bouncedelay {
-  0%, 80%, 100% {
-    transform: scale(0);
-    transform: scale(0);
-  } 40% {
-    transform: scale(1.0);
-    transform: scale(1.0);
-  }
-}
+// .spinner .bounce1 {
+//     background-color: blue;
+//   animation-delay: -0.32s;
+//   animation-delay: -0.32s;
+// }
+
+// .spinner .bounce2 {
+//     background-color: red;
+//   animation-delay: -0.16s;
+//   animation-delay: -0.16s;
+// }
+
+
+
+// @keyframes sk-bouncedelay {
+//   0%, 80%, 100% { transform: scale(0) }
+//   40% { transform: scale(1.0) }
+// }
+
+// @keyframes sk-bouncedelay {
+//   0%, 80%, 100% {
+//     transform: scale(0);
+//     transform: scale(0);
+//   } 40% {
+//     transform: scale(1.0);
+//     transform: scale(1.0);
+//   }
+// }
 
 .backgroundcolor{
     background-color: #42a5f5;
-    color: white;
+    color: #ffffffff;
 }
 .example-container {
     display: flex;
@@ -315,4 +315,92 @@ svg {
 .center-align{
 	color: red;
     padding-left: 10px;
+}
+
+$speed: 1.5s;
+.loader {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  margin: auto;
+  width: 175px;
+  height: 100px;
+  span {
+    display: block;
+    background: #ccc;
+    width: 7px;
+    height: 10%;
+    border-radius: 14px;
+    margin-right: 5px;
+    float: left;
+    margin-top: 25%;
+    &:last-child {
+      margin-right: 0px;
+    }
+    &:nth-child(1) {
+      animation: load $speed 1.4s infinite linear;
+    }
+    &:nth-child(2) {
+      animation: load $speed 1.2s infinite linear;
+    }
+    &:nth-child(3) {
+      animation: load $speed 1s infinite linear;
+    }
+    &:nth-child(4) {
+      animation: load $speed 0.8s infinite linear;
+    }
+    &:nth-child(5) {
+      animation: load $speed 0.6s infinite linear;
+    }
+    &:nth-child(6) {
+      animation: load $speed 0.4s infinite linear;
+    }
+    &:nth-child(7) {
+      animation: load $speed 0.2s infinite linear;
+    }
+    &:nth-child(8) {
+      animation: load $speed 0s infinite linear;
+    }
+    &:nth-child(9) {
+      animation: load $speed 0.2s infinite linear;
+    }
+    &:nth-child(10) {
+      animation: load $speed 0.4s infinite linear;
+    }
+    &:nth-child(11) {
+      animation: load $speed 0.6s infinite linear;
+    }
+    &:nth-child(12) {
+      animation: load $speed 0.8s infinite linear;
+    }
+    &:nth-child(13) {
+      animation: load $speed 1s infinite linear;
+    }
+    &:nth-child(14) {
+      animation: load $speed 1.2s infinite linear;
+    }
+    &:nth-child(15) {
+      animation: load $speed 1.4s infinite linear;
+    }
+  }
+}
+
+@keyframes load {
+  0% {
+    background: #ccc;
+    margin-top: 25%;
+    height: 10%;
+  }
+  50% {
+    background: #444;
+    height: 100%;
+    margin-top: 0%;
+  }
+  100% {
+    background: #ccc;
+    height: 10%;
+    margin-top: 25%;
+  }
 }

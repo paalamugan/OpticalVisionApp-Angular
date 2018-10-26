@@ -1,7 +1,7 @@
 export const adminmenus = [
     {
         'name': 'Dashboard',
-        'icon': 'dashboard',
+        'icon': './assets/icon/dashboard.svg',
         'link': false,
         'open': false,
         'chip': { 'value': 1, 'color': 'accent' },
@@ -9,7 +9,7 @@ export const adminmenus = [
             {
                 'name': 'Dashboard',
                 'link': '/optical/dashboard',
-                'icon': 'dashboard',
+                'icon': './assets/icon/dashboard.svg',
                 'chip': false,
                 'open': true,
                 'Tooltip':'DashBoard'
@@ -18,21 +18,62 @@ export const adminmenus = [
     },
     {
         'name'   : 'Employees',
-        'icon'   : 'person',
+        'icon'   : './assets/icon/Employee.svg',
         'open'   : false,
         'link'   : false,
         'sub'    :  [
                         {
                             'name': 'Add Employee',
-                            'icon': 'person_add',
+                            'icon': './assets/icon/addemployee.svg',
                             'open'   : false,
-                            'link':'employees/addemployees'
+                            'link':'employees/addemployees',
+                            'Tooltip':'AddEmployee'
                         },
                         {
                             'name': 'List Employee',
-                            'icon': 'people',
+                            'icon': './assets/icon/listemployee.svg',
                             'open'   : false,
-                            'link':'employees/listemployees'
+                            'link':'employees/listemployees',
+                            'Tooltip':'ListEmployee'
+                        }
+                    ]
+    },
+    {
+        'name'   : 'Products',
+        'icon'   : './assets/icon/product.svg',
+        'open'   : false,
+        'link'   : false,
+        'sub'    :  [
+                        {
+                            'name': 'Glasses',
+                            'icon': './assets/icon/Spects.svg',
+                            'open'   : false,
+                            'link':false,
+                            'sub':[
+                                
+                                    {
+                                        'name': 'Frame Material',
+                                        'icon': './assets/icon/frame_material.svg',
+                                        'open'   : false,
+                                        'link':'employees/addemployees',
+                                        'Tooltip':'FrameMaterial'
+                                    },
+                                    {
+                                        'name': 'Frame Type',
+                                        'icon': './assets/icon/frame_type.svg',
+                                        'open'   : false,
+                                        'link':'employees/listemployees',
+                                        'Tooltip':'FrameType'
+                                    }
+                            
+                        ]
+                        },
+                        {
+                            'name': 'Boxes',
+                            'icon': './assets/icon/Box.svg',
+                            'open'   : false,
+                            'link':'employees/listemployees',
+                            'Tooltip':'Boxes'
                         }
                     ]
     },
@@ -41,13 +82,13 @@ export const adminmenus = [
         
        {
             'name'   : 'Employees',
-            'icon'   : 'mode_edit',
+            'icon'   : './assets/icon/Employee.svg',
             'open'   : false,
             'link'   : false,
             'sub'    :  [
                             {
                                 'name': 'List Employee',
-                                'icon': 'text_fields',
+                                'icon': './assets/icon/listemployee.svg',
                                 'open'   : false,
                                 'link':'employees/listemployees'
                             }

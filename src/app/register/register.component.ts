@@ -161,9 +161,8 @@ export class RegisterComponent implements OnInit {
         },
        
       (err)=>{
-        console.log(err);
         if(err instanceof HttpErrorResponse){
-          if(err.status === 401){
+          if(err.status === 300){
               this.snackbar.open(err.error,'Alert' ,{
                 duration:3000
              });

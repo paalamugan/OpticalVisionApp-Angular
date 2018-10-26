@@ -15,7 +15,7 @@ export class UserMenuComponent implements OnInit {
    currentUser:Admin;
    userimage:any;
    name:string='No name';
-  // APIURL="http://localhost:9000/"
+   profileURL:string;
   @HostListener('document:click', ['$event', '$event.target'])
   onClick(event: MouseEvent, targetElement: HTMLElement) {
     if (!targetElement) {
@@ -35,11 +35,12 @@ export class UserMenuComponent implements OnInit {
   ngOnInit() {
     this.loginservice.getUserName().subscribe((data:Admin)=>{
       this.currentUser=data;
-      if(this.currentUser.userImage==null){
-        this.userimage=false;
+      this.userimage=Utils.APIURL+this.currentUser.userImage;
+      if(this.currentUser.Identifier=="admin"){
+        this.profileURL='profile/adminprofile/';
       }else{
-        this.userimage=Utils.APIURL+this.currentUser.userImage;
-      }
+        this.profileURL='profile/employeeprofile/';
+       }
  
     });
   }

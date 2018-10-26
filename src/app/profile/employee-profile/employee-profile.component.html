@@ -1,0 +1,208 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px" fxLayout.xs="column">
+            <div fxFlex="30">
+                <div class="card card-profile">
+                    <div class="card-avatar">
+                       
+                            <img class="img" [src]="userimage || 'assets/images/avatars/noavatar.png' "/>
+                       
+                    </div>
+                    <div class="card-body">
+                        <h6 class="card-category text-gray">Worker \ {{Identifier | uppercase}}</h6>
+                        <h4 class="card-title">{{username | uppercase}}</h4>
+                        <p class="card-description">
+                            <span style="font-weight: bold;">{{companyname | uppercase}}</span> is the Optical Vision Inc offers a collection of frames, both sun- and ophthalmic. Offering many different styles from a classic look to modern day styles...
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div fxFlex="70" style="position: sticky; width: 100%;" fxFlex.xs="100" fxLayout.xs="column">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Employee Details</h4>
+                        <!-- <p class="card-category">Complete your profile</p> -->
+                    </div>
+                    <div class="card-body">
+                        <form #userForm="ngForm">
+                            <div fxLayout="row" fxLayoutAlign="start start">
+                                <div fxFlex="30">
+                                    <label class="example-margin">Employee Name:</label>
+                                  </div>
+                                  <div fxFlex="50">
+                                     
+                                          <label class="example-full-width" style="padding: 25px 0px 0px 0px;">{{employee.employeeName}}</label>
+                                     
+                                    
+                                     
+                                   
+                                      </div>
+                                   
+                                      </div>
+                                      <div fxLayout="row" fxLayoutAlign="start start">
+                                          <div fxFlex="30">
+                                              <label class="example-margin">Mobile Number:</label>
+                                            </div>
+                                            <div fxFlex="50">
+                                <label class="example-full-width" style="padding: 25px 0px 0px 0px;">{{employee.mobileNumber}}</label>
+                                   
+                          
+                                  
+                                  </div>
+                                  </div>
+                                  <div fxLayout="row" fxLayoutAlign="start start">
+                                      <div fxFlex="30">
+                                          <label class="example-margin">Email:</label>
+                                        </div>
+                                        <div fxFlex="50">
+                                 
+                                     <label class="example-full-width" style="padding: 25px 0px 0px 0px;">{{employee.employeeEmail}}</label>
+                                  
+                                   
+                            
+                                   
+                                
+                               </div>
+                               </div>
+                             
+                                  
+                                  <div fxLayout="row" fxLayoutAlign="start start">
+                                      <div fxFlex="30">
+                                          <label class="example-margin">Address:</label>
+                                        </div>
+                                        <div fxFlex="50">
+                                          <label class="example-full-width" style="padding: 25px 0px 0px 0px; word-wrap: break-word;">{{employee.address}}</label>
+                                  
+                                 
+                                  </div>
+                                  </div>
+                                  <div fxLayout="row" fxLayoutAlign="start start">
+                                      <div fxFlex="30">
+                                          <label class="example-margin">Date Of Birth:</label>
+                                        </div>
+                                        <div fxFlex="50">
+                                          <label class="example-full-width" style="padding: 25px 0px 0px 0px;">{{employee.DOB}}</label>
+                                 
+                                  
+                                    </div>
+                                    </div>
+                                    <div fxLayout="row" fxLayoutAlign="start start">
+                                        <div fxFlex="30">
+                                            <label class="example-margin">Date Of Joining:</label>
+                                          </div>
+                                          <div fxFlex="50">
+                                              <label class="example-full-width" style="padding: 25px 0px 0px 0px;">{{employee.DOJ}}</label>
+                                   
+                                     
+                                      </div>
+                                  </div>
+                                  <div fxLayout="row" fxLayoutAlign="start start" required>
+                                    
+                                          <div fxFlex="30">
+                                              <label class="example-margin">Admin Access:</label>
+                                            </div>
+                                          
+                                     
+                                       
+                                        <div fxFlex="50">
+                                            <label class="example-full-width" style="padding: 25px 0px 0px 0px;">{{employee.adminAccess | uppercase}}</label>
+                                       
+                                        </div>
+                                    
+                                    </div>
+                                  
+                            <!-- <div fxLayout="row" fxLayoutGap="10px" fxLayout.xs="column" >
+                                <div fxFlex="40" class="example-container">
+                                  <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="Company Name" type="text" name="companyname" #companyName="ngModel" [(ngModel)]="profile.company.companyname" required>
+                                    </mat-form-field>
+                                    <mat-error class="error-message mat-body-1 center-align" *ngIf="companyName.touched && !companyName.valid">
+                                        <mat-error *ngIf="companyName.errors.required">Company Name is Required</mat-error>
+                                  
+                                        </mat-error>
+                                </div>
+                               
+                                <div fxFlex="40" class="example-container">
+                                    <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="User Name" type="text" name="username" #userName="ngModel" [(ngModel)]="profile.company.username" required>
+                                    </mat-form-field>
+                                    <mat-error class="error-message mat-body-1 center-align" *ngIf="userName.touched && !userName.valid">
+                                        <mat-error *ngIf="userName.errors.required">User Name is Required</mat-error>
+                                  
+                                        </mat-error>
+                                </div>
+                                <div fxFlex="20" class="example-container">
+                                    <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="Tin Number" type="text" name="tin" [(ngModel)]="profile.company.tin">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div fxLayout="row" fxLayoutGap="10px" fxLayout.xs="column">
+                                <div fxFlex="40" class="example-container">
+                                  <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Email Address" type="email" name="email" #Email="ngModel" pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" [(ngModel)]="profile.company.email" required>
+                                   
+                                  </mat-form-field>
+                                  <mat-error class="error-message mat-body-1 center-align" *ngIf="Email.touched && !Email.valid">
+                                      <mat-error *ngIf="Email.errors.required">Email is Required</mat-error>
+                                      <mat-error *ngIf="Email.errors.pattern">Not Valid Email</mat-error>
+                                </mat-error>
+                                </div>
+                                <div fxFlex="60"  class="example-container">
+                                <div fxLayout.xs="row" fxLayoutGap="10px">
+                                <div fxFlex="60" fxFlex.xs="50" class="example-container">
+                                  <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" name="password" [(ngModel)]="profile.company.password" #Password="ngModel" [disabled]="passwordDisabled" required>
+                                    <mat-icon class="cursor" [hidden]="eyeicon" matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon> 
+                                  </mat-form-field>
+                                  <mat-error class="error-message mat-body-1 center-align" *ngIf="Password.touched && !Password.valid">
+                                      <mat-error *ngIf="Password.errors.required">Password is Required</mat-error>
+                                </mat-error>
+                                </div>
+                                <div fxFlex="40" fxFlex.xs="50" class="example-container">
+                                    
+                                        <button mat-raised-button color="primary" class="mat-subheading-2 button-style" (click)="OnChangePassword()">Change Password</button>
+                                  
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div fxLayout="row" fxLayoutGap="10px" fxLayout.xs="column">
+                                <div fxFlex="50" class="example-container">
+                                  <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Address" type="text" name="address" [(ngModel)]="profile.company.address" #Address="ngModel" required>
+                                  </mat-form-field>
+                                  <mat-error class="error-message mat-body-1 center-align" *ngIf="Address.touched && !Address.valid">
+                                      <mat-error *ngIf="Address.errors.required">Address is Required</mat-error>
+                                </mat-error>
+                                </div>
+                                <div fxFlex="50" class="example-container">
+                                    <mat-form-field class="example-full-width">
+                                        <span matPrefix>+91 &nbsp;</span>
+                                      <input matInput placeholder="Phone Number" type="tel" name="phonenumber" maxlength="10" [(ngModel)]="profile.company.phonenumber" #phoneNumber="ngModel" required>
+                                      <mat-icon matSuffix>mode_edit</mat-icon>
+                                    </mat-form-field>
+                                    <mat-error class="error-message mat-body-1 center-align" *ngIf="phoneNumber.touched && !phoneNumber.valid">
+                                        <mat-error *ngIf="phoneNumber.errors.required">phoneNumber is Required</mat-error>
+                                  </mat-error>
+                                  </div>
+                            </div>
+                            <div fxLayout="row" fxLayoutGap="10px">
+                                <div fxFlex="100" class="example-container file_margin">
+                                 
+                                    <input type="file" (change)="onFileChange($event)" name="file" id="file">
+          
+                                </div>
+                            </div>
+                           
+                            <button mat-raised-button type="submit" color="primary" (click)="UpdateProfile()" [disabled]="userForm.invalid">Update Profile</button>
+                            <div class="clearfix"></div> -->
+                        </form>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+  </div>
+  

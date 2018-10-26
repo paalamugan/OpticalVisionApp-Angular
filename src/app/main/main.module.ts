@@ -24,6 +24,7 @@ import { AuthGuard } from '../guards/auth.guard';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptorService } from '../guards/token-interceptor.service';
 import { AuthService } from '../services/auth.service';
+import { ForgetpasswordComponent } from '../forget/forgetpassword/forgetpassword.component';
 @NgModule({
     imports: [
         CommonModule,

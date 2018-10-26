@@ -96,7 +96,7 @@ export class AddEmployeesComponent implements OnInit {
          },
          (err)=>{
           if(err instanceof HttpErrorResponse){
-            if(err.status === 401){
+            if(err.status === 300){
                 this.snackBar.open(err.error,'Alert' ,{
                   duration:3000
                });

@@ -1,0 +1,168 @@
+ .main-content {
+    margin-top: 10px;
+    padding: 30px 15px;
+    min-height: calc(100vh - 123px);
+}
+.card {
+    -webkit-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+}
+.card {
+    border: 0;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    border-radius: 6px;
+    color: #333333;
+    background: #fff;
+    width: 100%;
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+.card {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid #eeeeee;
+    border-radius: 0.25rem;
+}
+.card {
+    font-size: .875rem;
+}
+.card [class*="card-header-"]:not(.card-header-icon):not(.card-header-text):not(.card-header-image) {
+    border-radius: 3px;
+    margin-top: 0px;
+    padding: 15px;
+}
+
+// .card .card-header-danger .card-icon, .card .card-header-danger:not(.card-header-icon):not(.card-header-text), .card .card-header-danger .card-text {
+//     -webkit-box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(23, 22, 22, 0.4);
+//     box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(23, 22, 22, 0.4);
+// }
+
+.card .card-header-danger .card-icon, .card .card-header-danger .card-text, .card .card-header-danger:not(.card-header-icon):not(.card-header-text), .card.bg-danger, .card.card-rotate.bg-danger .front, .card.card-rotate.bg-danger .back {
+    background: linear-gradient(60deg, #2196f3, #42a5f5);
+}
+
+.card [class*="card-header-"] {
+    // margin: 0px 15px 0;
+    padding: 0;
+    position: relative;
+}
+
+.card .card-header {
+    z-index: 3 !important;
+}
+
+.card [class*="card-header-"], .card[class*="bg-"] {
+    color: #fff;
+}
+
+.card .card-header {
+    border-bottom: none;
+    background: transparent;
+}
+
+.card-header:first-child {
+    border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;
+}
+.card-header {
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    background-color: #fff;
+    border-bottom: 1px solid #eeeeee;
+}
+.card .card-header .card-title {
+    margin-bottom: 3px;
+}
+
+.card [class*="card-header-"] .card-title a, .card [class*="card-header-"] .card-title, .card [class*="card-header-"] .icon i, .card[class*="bg-"] .card-title a, .card[class*="bg-"] .card-title, .card[class*="bg-"] .icon i {
+    color: #fff;
+}
+
+.card .card-title {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.card .card-title {
+    margin-top: 0.625rem;
+}
+
+.title, .title a, .card-title, .card-title a, .info-title, .info-title a, .footer-brand, .footer-brand a, .footer-big h5, .footer-big h5 a, .footer-big h4, .footer-big h4 a, .media .media-heading, .media .media-heading a {
+    color: #3C4858;
+    text-decoration: none;
+}
+h4, .h4 {
+    font-size: 1.125rem;
+    line-height: 1.4em;
+    font-weight: 300;
+}
+.card [class*="card-header-"] .card-title + .card-category {
+    color: rgba(255, 255, 255, 0.62);
+}
+
+.card .card-header .card-category {
+    margin: 0;
+}
+.card-profile {
+    margin-top: 30px;
+    text-align: center;
+}
+.card-profile .card-avatar {
+    max-width: 130px;
+    max-height: 130px;
+}
+.card-profile .card-avatar {
+    margin: -50px auto 0;
+    border-radius: 50%;
+    overflow: hidden;
+    padding: 0;
+    -webkit-box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+}
+.card-profile .card-avatar img {
+    width: 100%;
+    height: auto;
+    background: white;
+}
+.card-profile .card-avatar + .card-body {
+    margin-top: 15px;
+}
+.card .card-body {
+    padding: 0.9375rem 20px;
+    position: relative;
+}
+.card .card-category {
+    margin-top: 10px;
+}
+
+.text-gray {
+    color: #999999 !important;
+}
+
+h6, .h6 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+.card .card-title {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+ .card-description {
+    color: #999999;
+}
+.file_margin{
+    margin: 12px 0px;
+    border-bottom: 1px #9a9797 solid;
+    padding: 0px 0px 5px 0px;
+}

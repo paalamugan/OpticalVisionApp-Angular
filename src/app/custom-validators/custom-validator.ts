@@ -39,6 +39,23 @@ export function passValidator(control: AbstractControl) {
     }
     return null;
   }
+  export function forgetpassValidator(control: AbstractControl) {
+    if (control && (control.value !== null || control.value !== undefined)) {
+      const cnfpassValue = control.value;
+
+      const passControl = control.root.get('newPassword');
+      if (passControl) {
+        const passValue = passControl.value;
+        if (passValue !== cnfpassValue || passValue === '') {
+          return {
+            passValidator: true
+          };
+        }
+      }
+    }
+
+    return null;
+  }
 //   export class PasswordValidator {
 //     // Inspired on: http://plnkr.co/edit/Zcbg2T3tOxYmhxs7vaAm?p=preview
 //     static areEqual(formGroup: FormGroup) {
@@ -102,5 +119,19 @@ export function passValidator(control: AbstractControl) {
     ],
     'terms': [
       { type: 'pattern', message: 'You must accept terms and conditions' }
+    ]
+    }
+    export var ForgetPassword_validation_messages = {
+      'temppassword':[
+      { type: 'required', message: 'Temporary Password is required'}
+      ],
+    'confirm_password': [
+      { type: 'required', message: 'Confirm password is required' },
+      { type: 'passValidator', message: 'Password is mismatch' }
+    ],
+    'password': [
+      { type: 'required', message: 'Password is required' },
+      { type: 'minlength', message: 'Password must be at least 5 characters long' },
+      { type: 'pattern', message: 'Your password must contain Uppercase and charactes and number Only' }
     ]
     }

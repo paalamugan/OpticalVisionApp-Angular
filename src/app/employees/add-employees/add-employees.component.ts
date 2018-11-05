@@ -69,10 +69,9 @@ export class AddEmployeesComponent implements OnInit {
   OnSubmit(){
    
     this.employee.companySignUp=this.companysignup;
-    console.log(this.employee);
    let formData=new FormData;
-    //if ( this.countfilelength > 0) { 
-     
+    if ( this.countfilelength > 0) { 
+      if(this.selectedfile.type==="image/jpeg" || this.selectedfile.type==="image/png"){
       formData.append('userImage', this.selectedfile);
        formData.append('employeeName', this.employee.employeeName);
        formData.append('mobileNumber', this.employee.mobileNumber);
@@ -92,7 +91,8 @@ export class AddEmployeesComponent implements OnInit {
           this.snackBar.open("Employee successfully Added",'Ok' ,{
             duration:3000
          });
-         this.employee=new Employee("","",'','','','','',this.dob,this.doj,'','','',this.companysignup);
+         this.employee=this.employee;
+        //  this.employee=new Employee("","",'','','','','',this.dob,this.doj,'','','',this.companysignup);
          },
          (err)=>{
           if(err instanceof HttpErrorResponse){
@@ -105,8 +105,43 @@ export class AddEmployeesComponent implements OnInit {
          }
          
          );
-  //  }else{
-  //         this.uploadImageError="Choose one photo";
-  //  }
+        }else{
+          this.snackBar.open("Select Only Jpeg and Png format Image", "Alert", {
+            duration: 3000,
+                  });
+        }
+    }else{
+      formData.append('userImage', this.selectedfile);
+      formData.append('employeeName', this.employee.employeeName);
+      formData.append('mobileNumber', this.employee.mobileNumber);
+     formData.append('employeeEmail', this.employee.employeeEmail);
+      formData.append('employeePassword', this.employee.employeePassword);
+      formData.append('address', this.employee.address);
+     formData.append('DOB', this.employee.DOB.toLocaleDateString());
+      formData.append('DOJ', this.employee.DOJ.toLocaleDateString());
+      formData.append('adminAccess',this.employee.adminAccess);
+      formData.append('uuid',this.employee.companySignUp.uuid);
+      this.employeeservice.addEmployee(formData)
+      .subscribe(
+        (response)=>{
+         this.styleOne=false;
+         this.selectedfile=null;
+         this.snackBar.open("Employee successfully Added",'Ok' ,{
+           duration:3000
+        });
+        this.employee=this.employee;
+        },
+        (err)=>{
+         if(err instanceof HttpErrorResponse){
+           if(err.status === 300){
+               this.snackBar.open(err.error,'Alert' ,{
+                 duration:3000
+              });
+           }
+         }
+        }
+        
+        );
+    }
   }
 }

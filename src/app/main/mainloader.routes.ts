@@ -8,7 +8,7 @@ export const appRoutes: Routes = [{
         { path: 'dashboard', component: DashboardCrmComponent,canActivate:[AuthGuard] },
         { path: 'employees', loadChildren: '../employees/employees.module#EmployeeModule' },
         { path: 'profile', loadChildren: '../profile/profile.module#ProfileModule' },
-      //  { path: 'maps', loadChildren: '../maps/maps.module#MapsModule' },
+        { path: 'products', loadChildren: '../products/products.module#ProductModule' },
       //  { path: 'charts', loadChildren: '../charts/charts.module#ChartsModule' },
         // { path: 'chats', loadChildren: '../chats/chat.module#ChatsModule' }, // fix this
         //{ path: 'mail', loadChildren: '../mail/mail.module#MailModule' }, // fix this

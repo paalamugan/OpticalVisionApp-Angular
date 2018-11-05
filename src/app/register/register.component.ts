@@ -16,6 +16,7 @@ export class RegisterComponent implements OnInit {
   account_validation_messages=account_validation_messages;
   styleOne:boolean;
   selectedfile:File=null;
+  isLoadingResults:boolean=false;
   //RegistrationForm: FormBuilder;
   constructor(private router:Router,private elem: ElementRef,private fb:FormBuilder,private signupservice:SignupService,private snackbar:MatSnackBar,private cd: ChangeDetectorRef) {
 
@@ -125,57 +126,90 @@ export class RegisterComponent implements OnInit {
   }
   signUp(){
    let formData = new FormData();
-       
-   
-       // if ( this.countfilelength >= 0) { 
-            
-                formData.append('userImage', this.selectedfile);
-                formData.append('companyName', this.RegistrationForm.value.companyName);
-                formData.append('tinNumber', this.RegistrationForm.value.tinNumber);
-                formData.append('userName', this.RegistrationForm.value.userName);
-                formData.append('email', this.RegistrationForm.value.email);
-                formData.append('password', this.RegistrationForm.value.password);
-                formData.append('cnfPassword', this.RegistrationForm.value.cnfPassword);
-                formData.append('address', this.RegistrationForm.value.address);
-                formData.append('phoneNumber', this.RegistrationForm.value.phoneNumber);
-               
-     //   }
-        
-      
-    // let files=this.elem.nativeElement.querySelector('#selectedFile').files;
-    // let fb=new FormData();
-    // let file= files[0];
-    // fb.append('selectedFile',file,file.name);
-    // console.log(fb);
-  //   console.log(this.RegistrationForm.value);
-    if (this.RegistrationForm.valid) {
-      this.signupservice.submitRegister(formData)
-      .subscribe(
-        (response)=>{
-          this.styleOne=false;
-          this.RegistrationForm.reset(true);
-           this.selectedfile=null;
-            this.snackbar.open("Registration Success", "Success", {
-            duration: 2000,
-                  });
-        },
-       
-      (err)=>{
-        if(err instanceof HttpErrorResponse){
-          if(err.status === 300){
-              this.snackbar.open(err.error,'Alert' ,{
-                duration:3000
-             });
+    this.isLoadingResults = true;
+        if ( this.countfilelength > 0) { 
+          if(this.selectedfile.type==="image/jpeg" || this.selectedfile.type==="image/png"){
+            formData.append('userImage', this.selectedfile);
+            formData.append('companyName', this.RegistrationForm.value.companyName);
+            formData.append('tinNumber', this.RegistrationForm.value.tinNumber);
+            formData.append('userName', this.RegistrationForm.value.userName);
+            formData.append('email', this.RegistrationForm.value.email);
+            formData.append('password', this.RegistrationForm.value.password);
+            formData.append('cnfPassword', this.RegistrationForm.value.cnfPassword);
+            formData.append('address', this.RegistrationForm.value.address);
+            formData.append('phoneNumber', this.RegistrationForm.value.phoneNumber);
+            this.signupservice.submitRegister(formData)
+            .subscribe(
+              (response)=>{
+                this.styleOne=false;
+                // this.RegistrationForm.reset(true);
+                //  this.selectedfile=null;
+                  this.snackbar.open("Registration Success", "Success", {
+                  duration: 2000,
+                        });
+                  this.isLoadingResults = false;
+                this.router.navigate(['/login']);
+              },
+             
+            (err)=>{
+              if(err instanceof HttpErrorResponse){
+                if(err.status === 300){
+                    this.snackbar.open(err.error,'Alert' ,{
+                      duration:3000
+                   });
+                   this.isLoadingResults = false;
+                }else{
+                  this.snackbar.open(err.statusText,'Alert' ,{
+                    duration:3000
+                 });
+                 this.isLoadingResults = false;
+                }
+              }
+            }
+            );
           }else{
-            this.snackbar.open(err.statusText,'Alert' ,{
-              duration:3000
-           });
+            this.snackbar.open("Select Only Jpeg and Png format Image", "Alert", {
+              duration: 3000,
+                    });
+                    this.isLoadingResults = false;
           }
+               
+               
+        }else{
+          formData.append('userImage', this.selectedfile);
+          formData.append('companyName', this.RegistrationForm.value.companyName);
+          formData.append('tinNumber', this.RegistrationForm.value.tinNumber);
+          formData.append('userName', this.RegistrationForm.value.userName);
+          formData.append('email', this.RegistrationForm.value.email);
+          formData.append('password', this.RegistrationForm.value.password);
+          formData.append('cnfPassword', this.RegistrationForm.value.cnfPassword);
+          formData.append('address', this.RegistrationForm.value.address);
+          formData.append('phoneNumber', this.RegistrationForm.value.phoneNumber);
+          this.signupservice.submitRegister(formData)
+          .subscribe(
+            (response)=>{
+              this.styleOne=false;
+              // this.RegistrationForm.reset(true);
+              //  this.selectedfile=null;
+                this.snackbar.open("Registration Success", "Success", {
+                duration: 2000,
+                      });
+                this.isLoadingResults = false;
+              this.router.navigate(['/login']);
+            },
+           
+          (err)=>{
+            if(err instanceof HttpErrorResponse){
+              if(err.status === 300){
+                  this.snackbar.open(err.error,'Alert' ,{
+                    duration:3000
+                 });
+                 this.isLoadingResults = false;
+                }
+              }
         }
+        );
       }
-      );
-   }
-    
      
     }
     movetologin(){

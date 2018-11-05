@@ -54,16 +54,23 @@ export const adminmenus = [
                                     {
                                         'name': 'Frame Material',
                                         'icon': './assets/icon/frame_material.svg',
-                                        'open'   : false,
-                                        'link':'employees/addemployees',
+                                        'open' : false,
+                                        'link':'products/glasses/frame_material',
                                         'Tooltip':'FrameMaterial'
                                     },
                                     {
                                         'name': 'Frame Type',
                                         'icon': './assets/icon/frame_type.svg',
-                                        'open'   : false,
-                                        'link':'employees/listemployees',
+                                        'open': false,
+                                        'link':'products/glasses/frame_type',
                                         'Tooltip':'FrameType'
+                                    },
+                                    {
+                                        'name': 'Lens Type',
+                                        'icon': './assets/icon/Lens.svg',
+                                        'open': false,
+                                        'link':'products/glasses/lens_type',
+                                        'Tooltip':'LensType'
                                     }
                             
                         ]
@@ -72,7 +79,7 @@ export const adminmenus = [
                             'name': 'Boxes',
                             'icon': './assets/icon/Box.svg',
                             'open'   : false,
-                            'link':'employees/listemployees',
+                            'link':'products/boxes/box_model',
                             'Tooltip':'Boxes'
                         }
                     ]

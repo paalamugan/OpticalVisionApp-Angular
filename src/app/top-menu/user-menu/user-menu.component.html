@@ -12,9 +12,9 @@
     	<div class="content">
       		<mat-nav-list>
       			<mat-list-item>
-      				<a matLine routerLinkActive="active" [routerLink]="[profileURL]">Profile</a>
+      				<a matLine routerLinkActive="active" (click)="nagivateurl()">Profile</a>
 				    <button mat-icon-button>
-				       <mat-icon matTooltip="Profile" routerLinkActive="active" [routerLink]="[profileURL]">account_circle</mat-icon>
+				       <mat-icon matTooltip="Profile" (click)="nagivateurl()" routerLinkActive="active">account_circle</mat-icon>
 				    </button>
       			</mat-list-item>
       			<!-- <mat-list-item>

@@ -234,10 +234,6 @@ body{
   overflow: hidden;
   // padding: 0.625rem 1.25rem;
 }
-label {
-  display: inline-block;
-  margin-bottom: 0.5rem;
-}
 .inputfile-6 + label span {
   width: 425px;
   min-height: 2em;
@@ -316,7 +312,18 @@ svg {
 	color: red;
     padding-left: 10px;
 }
+div.addmargin{
+  margin: 10px 0px;
+  font-size: .875rem;
+  }
+  .example-margin {
+      padding: 26px;
+  }
+.example-full-width {
+      width: 100%;
+  }
 
+//animation loader css style
 $speed: 1.5s;
 .loader {
   position: absolute;

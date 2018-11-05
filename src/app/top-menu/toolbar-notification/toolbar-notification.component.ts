@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, Input } from '@angular/core';
+import { Component, OnInit, ElementRef, Input, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-toolbar-notification',
@@ -11,16 +11,16 @@ export class ToolbarNotificationComponent implements OnInit {
   isOpen: boolean = false;
   @Input() notifications = [];
 
-  // @HostListener('document:click', ['$event', '$event.target'])
-  // onClick(event: MouseEvent, targetElement: HTMLElement) {
-  //     if (!targetElement) {
-  //           return;
-  //     }
-  //     const clickedInside = this.elementRef.nativeElement.contains(targetElement);
-  //     if (!clickedInside) {
-  //          this.isOpen = false;
-  //     }
-  // }
+  @HostListener('document:click', ['$event', '$event.target'])
+  onClick(event: MouseEvent, targetElement: HTMLElement) {
+      if (!targetElement) {
+            return;
+      }
+      const clickedInside = this.elementRef.nativeElement.contains(targetElement);
+      if (!clickedInside) {
+           this.isOpen = false;
+      }
+  }
   
   constructor(private elementRef: ElementRef) { }
 

@@ -27,7 +27,7 @@ import {
 @NgModule({
   declarations: [
     AppComponent,
-    ForgetpasswordComponent
+    ForgetpasswordComponent,
   ],
   imports: [
     BrowserModule,

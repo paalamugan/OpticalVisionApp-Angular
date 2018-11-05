@@ -15,7 +15,9 @@ export class AuthGuard implements CanActivate,CanActivateChild {
   }
 
   canActivate():boolean{
-    if(Utils.loggedIn() && (this.auth.isLoggedIn=='admin' || this.auth.isLoggedIn=='employee-admin')){
+    console.log(this.auth.isLoggedIn);
+   // if(Utils.loggedIn() && (this.auth.isLoggedIn=='admin' || this.auth.isLoggedIn=='employee-admin')){
+      if(Utils.loggedIn()){
       return true;
     }
     else{
@@ -38,7 +40,7 @@ export class AuthGuard implements CanActivate,CanActivateChild {
   }
   canActivateChild():boolean{
    
-    if(Utils.loggedIn() && (this.auth.isLoggedIn=='employee' || this.auth.isLoggedIn=='admin' || this.auth.isLoggedIn=='employee-admin')){
+    if(Utils.loggedIn()){
       return true;
     }
     else{

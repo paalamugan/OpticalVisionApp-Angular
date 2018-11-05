@@ -21,6 +21,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatDialogModule} from '@angular/material/dialog';
 import { AdminProfileComponent } from './admin-profile/admin-profile.component';
 import { EmployeeProfileComponent } from './employee-profile/employee-profile.component';
+import { AuthGuard } from '../guards/auth.guard';
 @NgModule({
 	imports: [
 		CommonModule,
@@ -43,7 +44,7 @@ import { EmployeeProfileComponent } from './employee-profile/employee-profile.co
 		 MatDialogModule
 	],
 	declarations: [AdminProfileComponent, EmployeeProfileComponent],
-	providers:[],
+	providers:[AuthGuard],
 	entryComponents:[]
 })
 export class ProfileModule { }

@@ -20,14 +20,18 @@ employee:Employee=new Employee('','','','','','','',this.doj,this.dob,'','','',t
 Identifier:string;
 username:string;
 companyname:string;
-userimage:string;
+userimage:any;
   ngOnInit() {
     this.loginservice.getUserName().subscribe((data:any)=>{
       if(data.Identifier=="employee" || data.Identifier=="employee-admin"){
+        if(data.userImage==="null"){
+          this.userimage=false;
+        }else{
+          this.userimage=Utils.APIURL+data.userImage;
+        }
         this.Identifier=data.Identifier;
         this.username=data.username;
         this.companyname=data.companyname;
-        this.userimage=Utils.APIURL+data.userImage;
         this.employee=data.employee;
       }else{
           this.router.navigateByUrl('login');

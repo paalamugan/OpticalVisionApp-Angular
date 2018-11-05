@@ -17,18 +17,113 @@
                   </div>
               </div>
           </div>
-          <div fxFlex="70" style="position: sticky; width: 100%;" fxFlex.xs="100" fxLayout.xs="column">
+          <div fxFlex="70" [hidden]="adminshow_1" style="position: sticky; width: 100%;" fxFlex.xs="100" fxLayout.xs="column">
+            <div class="card">
+                <div class="card-header card-header-danger">
+                    <h4 class="card-title">{{profiledetails}}</h4>
+                </div>
+                <div class="card-body">
+                    <form>
+                        <div fxLayout="row" fxLayoutAlign="start start">
+                            <div fxFlex="30">
+                                <label class="example-margin">Company Name:</label>
+                              </div>
+                              <div fxFlex="50">
+                                 
+                                      <label class="example-full-width">{{profile.company.companyname}}</label>
+                                 
+                                
+                                 
+                               
+                                  </div>
+                               
+                                  </div>
+                                  <div fxLayout="row" fxLayoutAlign="start start">
+                                      <div fxFlex="30">
+                                          <label class="example-margin">UserName:</label>
+                                        </div>
+                                        <div fxFlex="50">
+                            <label class="example-full-width">{{profile.company.username}}</label>
+                               
+                      
+                              
+                              </div>
+                              </div>
+                              <div fxLayout="row" fxLayoutAlign="start start">
+                                  <div fxFlex="30">
+                                      <label class="example-margin">Tin:</label>
+                                    </div>
+                                    <div fxFlex="50">
+                             
+                                 <label class="example-full-width">{{profile.company.tin}}</label>
+                              
+                               
+                        
+                               
+                            
+                           </div>
+                           </div>
+                         
+                              
+                              <div fxLayout="row" fxLayoutAlign="start start">
+                                  <div fxFlex="30">
+                                      <label class="example-margin">Email:</label>
+                                    </div>
+                                    <div fxFlex="50">
+                                      <label class="example-full-width">{{profile.company.email}}</label>
+                              
+                             
+                              </div>
+                              </div>
+                              <div fxLayout="row" fxLayoutAlign="start start">
+                                  <div fxFlex="30">
+                                      <label class="example-margin">Address:</label>
+                                    </div>
+                                    <div fxFlex="50">
+                                      <label class="example-full-width">{{profile.company.address}}</label>
+                             
+                              
+                                </div>
+                                </div>
+                                <div fxLayout="row" fxLayoutAlign="start start">
+                                    <div fxFlex="30">
+                                        <label class="example-margin">Phone Number:</label>
+                                      </div>
+                                      <div fxFlex="50">
+                                          <label class="example-full-width">{{profile.company.phonenumber}}</label>
+                               
+                                 
+                                  </div>
+                              </div>
+                              <div fxLayout="row" fxLayoutAlign="start start">
+                                <div fxFlex="30">
+                                  </div>
+                                  <div fxFlex="50">
+                                    <button mat-raised-button type="submit" color="primary" (click)="editProfile()">Edit Profile</button>
+                           
+                             
+                              </div>
+                          </div>
+                             
+                              
+                       
+                    </form>
+                </div>
+            </div>
+        </div>
+       
+          <div fxFlex="70" [hidden]="adminshow_2" style="position: sticky; width: 100%;" fxFlex.xs="100" fxLayout.xs="column">
               <div class="card">
                   <div class="card-header card-header-danger">
                       <h4 class="card-title">{{profiledetails}}</h4>
-                      <!-- <p class="card-category">Complete your profile</p> -->
+                       <p class="card-category">Complete your profile</p> 
                   </div>
                   <div class="card-body">
                       <form #userForm="ngForm">
                           <div fxLayout="row" fxLayoutGap="10px" fxLayout.xs="column" >
                               <div fxFlex="40" class="example-container">
                                 <mat-form-field class="example-full-width">
-                                    <input matInput placeholder="Company Name" type="text" name="companyname" #companyName="ngModel" [(ngModel)]="profile.company.companyname" required>
+                                    <input matInput placeholder="Company Name" type="text" name="companyname" #companyName="ngModel" [(ngModel)]="currentCompany.companyname" required>
                                   </mat-form-field>
                                   <mat-error class="error-message mat-body-1 center-align" *ngIf="companyName.touched && !companyName.valid">
                                       <mat-error *ngIf="companyName.errors.required">Company Name is Required</mat-error>
@@ -38,7 +133,7 @@
                              
                               <div fxFlex="40" class="example-container">
                                   <mat-form-field class="example-full-width">
-                                    <input matInput placeholder="User Name" type="text" name="username" #userName="ngModel" [(ngModel)]="profile.company.username" required>
+                                    <input matInput placeholder="User Name" type="text" name="username" #userName="ngModel" [(ngModel)]="currentCompany.username" required>
                                   </mat-form-field>
                                   <mat-error class="error-message mat-body-1 center-align" *ngIf="userName.touched && !userName.valid">
                                       <mat-error *ngIf="userName.errors.required">User Name is Required</mat-error>
@@ -47,14 +142,14 @@
                               </div>
                               <div fxFlex="20" class="example-container">
                                   <mat-form-field class="example-full-width">
-                                    <input matInput placeholder="Tin Number" type="text" name="tin" [(ngModel)]="profile.company.tin">
+                                    <input matInput placeholder="Tin Number" type="text" name="tin" [(ngModel)]="currentCompany.tin">
                                   </mat-form-field>
                               </div>
                           </div>
                           <div fxLayout="row" fxLayoutGap="10px" fxLayout.xs="column">
                               <div fxFlex="40" class="example-container">
                                 <mat-form-field class="example-full-width">
-                                  <input matInput placeholder="Email Address" type="email" name="email" #Email="ngModel" pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" [(ngModel)]="profile.company.email" required>
+                                  <input matInput placeholder="Email Address" type="email" name="email" #Email="ngModel" pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" [(ngModel)]="currentCompany.email" required>
                                  
                                 </mat-form-field>
                                 <mat-error class="error-message mat-body-1 center-align" *ngIf="Email.touched && !Email.valid">
@@ -66,7 +161,7 @@
                               <div fxLayout.xs="row" fxLayoutGap="10px">
                               <div fxFlex="60" fxFlex.xs="50" class="example-container">
                                 <mat-form-field class="example-full-width">
-                                  <input matInput placeholder="Password" (keyup)="passwordtextchanged($event)" [type]="hide ? 'password' : 'text'" name="password" [(ngModel)]="profile.company.password" [disabled]="passwordDisabled" required>
+                                  <input matInput placeholder="Password" (keyup)="passwordtextchanged($event)" [type]="hide ? 'password' : 'text'" name="password" [(ngModel)]="currentCompany.password" [disabled]="passwordDisabled" required>
                                   <mat-icon class="cursor" [hidden]="eyeicon" matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon> 
                                 </mat-form-field>
                                 <mat-error *ngIf="password_error" class="error-message mat-body-1 center-align">
@@ -84,7 +179,7 @@
                           <div fxLayout="row" fxLayoutGap="10px" fxLayout.xs="column">
                               <div fxFlex="50" class="example-container">
                                 <mat-form-field class="example-full-width">
-                                  <input matInput placeholder="Address" type="text" name="address" [(ngModel)]="profile.company.address" #Address="ngModel" required>
+                                  <input matInput placeholder="Address" type="text" name="address" [(ngModel)]="currentCompany.address" #Address="ngModel" required>
                                 </mat-form-field>
                                 <mat-error class="error-message mat-body-1 center-align" *ngIf="Address.touched && !Address.valid">
                                     <mat-error *ngIf="Address.errors.required">Address is Required</mat-error>
@@ -93,7 +188,7 @@
                               <div fxFlex="50" class="example-container">
                                   <mat-form-field class="example-full-width">
                                       <span matPrefix>+91 &nbsp;</span>
-                                    <input matInput placeholder="Phone Number" type="tel" name="phonenumber" maxlength="10" [(ngModel)]="profile.company.phonenumber" #phoneNumber="ngModel" required>
+                                    <input matInput placeholder="Phone Number" type="tel" name="phonenumber" maxlength="10" [(ngModel)]="currentCompany.phonenumber" #phoneNumber="ngModel" required>
                                     <mat-icon matSuffix>mode_edit</mat-icon>
                                   </mat-form-field>
                                   <mat-error class="error-message mat-body-1 center-align" *ngIf="phoneNumber.touched && !phoneNumber.valid">
@@ -108,8 +203,21 @@
         
                               </div>
                           </div>
+                          <div fxLayout="row" fxLayoutAlign="start start">
+                            
+                              <div fxFlex="50">
+                                    <div fxFlex="100">
+                                            <button mat-raised-button type="submit" color="primary" (click)="UpdateProfile()" [disabled]="userForm.invalid">Update Profile</button>
+                                    </div>
+                                    <div fxFlex="100">
+                                            <button mat-raised-button type="submit" color="primary" (click)="back()">Back</button>
+                                    </div>
+                       
                          
-                          <button mat-raised-button type="submit" color="primary" (click)="UpdateProfile()" [disabled]="userForm.invalid">Update Profile</button>
+                          </div>
+                          
+                      </div>
+                         
                           <div class="clearfix"></div>
                       </form>
                   </div>

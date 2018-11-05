@@ -118,8 +118,8 @@ h4, .h4 {
     text-align: center;
 }
 .card-profile .card-avatar {
-    max-width: 130px;
-    max-height: 130px;
+    max-width: 154px;
+    max-height: 154px;
 }
 .card-profile .card-avatar {
     margin: -50px auto 0;
@@ -165,4 +165,8 @@ h6, .h6 {
     margin: 12px 0px;
     border-bottom: 1px #9a9797 solid;
     padding: 0px 0px 5px 0px;
+}
+.example-margin {
+    margin: 0px 10px;
+    padding-bottom: 25px;
 }

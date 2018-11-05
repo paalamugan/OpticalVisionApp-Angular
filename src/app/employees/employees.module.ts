@@ -47,7 +47,7 @@ import { EditEmployeesComponent } from './edit-employees/edit-employees.componen
 		 MatDialogModule
 	],
 	declarations: [AddEmployeesComponent, ListEmployeesComponent,EditEmployeesComponent],
-	providers:[
+	providers:[AuthGuard,
 		// {
         //     provide:HTTP_INTERCEPTORS,
         //     useClass:TokenInterceptorService,

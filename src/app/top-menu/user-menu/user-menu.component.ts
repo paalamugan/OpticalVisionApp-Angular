@@ -35,14 +35,22 @@ export class UserMenuComponent implements OnInit {
   ngOnInit() {
     this.loginservice.getUserName().subscribe((data:Admin)=>{
       this.currentUser=data;
-      this.userimage=Utils.APIURL+this.currentUser.userImage;
-      if(this.currentUser.Identifier=="admin"){
-        this.profileURL='profile/adminprofile/';
+    if(this.currentUser.Identifier=="admin"){
+        if(this.currentUser.userImage==="null"){
+          this.userimage=false;
+                }else{
+                  this.userimage=Utils.APIURL+this.currentUser.userImage;
+                }
+        this.profileURL='/optical/profile/adminprofile/';
       }else{
-        this.profileURL='profile/employeeprofile/';
+        this.profileURL='/optical/profile/employeeprofile/';
        }
  
     });
+  }
+  nagivateurl(){
+   this.router.navigate([this.profileURL]);
+    this.isOpen=false;
   }
   logout(){
    localStorage.removeItem('token');

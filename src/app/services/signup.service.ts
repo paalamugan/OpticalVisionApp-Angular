@@ -12,6 +12,9 @@ export class SignupService {
   public getAll() {
     return this.httpClient.get(`${Utils.getSignupURL()}`);
   }
+  public getOne(company:CompanySignup){
+    return this.httpClient.get(`${Utils.getOneSignupURL()}`+`/${company.uuid}`);
+  }
   public submitRegister(body:any) {
     return this.httpClient.post(`${Utils.getSignupURL()}`,body);
   }

@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { Employee } from 'src/app/models/employee';
 import{ActivatedRoute, Router} from '@angular/router';
 import { EmployeeService } from 'src/app/services/employee.service';
@@ -22,7 +22,7 @@ DOJtoString:string;
   newpasswordvalue:string="";
   currentpassword:string="";
   // constructor( private dialogRef: MatDialogRef<EditEmployeesComponent>, @Inject(MAT_DIALOG_DATA) public data: Employee) { }
-  constructor(private route:ActivatedRoute, private employeeservice:EmployeeService,private router:Router){}
+  constructor(private route:ActivatedRoute, private employeeservice:EmployeeService,private router:Router,private snackBar:MatSnackBar){}
   employee:Employee=new Employee("","",'','','','','',this.dob,this.doj,'','','',this.companysignup);
   countfilelength:number;
   onFileChange(event) {
@@ -96,6 +96,7 @@ this.DOBtoString=this.employee.DOB.toLocaleDateString();
             this.DOJtoString=JSON.stringify(this.employee.DOJ);
           }
     if(this.countfilelength >0){
+      if(this.selectedfile.type==="image/jpeg" || this.selectedfile.type==="image/png"){
       formData.append('userImage', this.selectedfile);
       formData.append('employeeName', this.employee.employeeName);
       formData.append('mobileNumber', this.employee.mobileNumber);
@@ -112,6 +113,11 @@ this.DOBtoString=this.employee.DOB.toLocaleDateString();
          this.router.navigate(['optical/employees/listemployees']);
         }
         );
+      }else{
+          this.snackBar.open("Select Only Jpeg and Png format Image","Alert",{
+            duration:3000
+})
+      }
     }else{
       this.employeeservice.updateemployee(this.employee).subscribe(
            (resultData:Employee)=>{

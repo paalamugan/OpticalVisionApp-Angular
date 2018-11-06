@@ -2,6 +2,7 @@
 
 const API_URL = "http://localhost:9000/";
 const COMPANY_URL = API_URL + "api/visionapp/company/";
+const DUMMY_URL=API_URL+"api/visionapp/dummy/";
 const EMPLOYEE_URL = API_URL + "api/visionapp/employee/";
 const FRAME_MATERIAL_URL = API_URL + "api/visionapp/framematerial/";
 
@@ -91,4 +92,14 @@ public static getallframematerialURL() {
 public static getframematerialURL() {
     return FRAME_MATERIAL_URL + GET_ACTION_ONE;
 }
+public static updateframematerialURL() {
+    return FRAME_MATERIAL_URL + UPDATE_ACTION;
+}
+
+
+//dummy Api
+public static getDummyURL() {
+    return DUMMY_URL;
+}
+
 }

@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Utils } from '../utils';
 
 
 @Injectable({
@@ -6,7 +8,7 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
  private loggedIn='';
-  constructor() { 
+  constructor(private httpClient:HttpClient) { 
     
   }
   setLoggedIn(value:string){
@@ -15,4 +17,7 @@ export class AuthService {
    get isLoggedIn(){
 return this.loggedIn;
    }
+   public getDummuyValue(body:any){
+    return this.httpClient.post(`${Utils.getDummyURL()}`,body);
+  }
 }

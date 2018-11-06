@@ -91,8 +91,8 @@ export class AddEmployeesComponent implements OnInit {
           this.snackBar.open("Employee successfully Added",'Ok' ,{
             duration:3000
          });
-         this.employee=this.employee;
-        //  this.employee=new Employee("","",'','','','','',this.dob,this.doj,'','','',this.companysignup);
+        // this.employee=this.employee;
+          this.employee=new Employee("","",'','','','','',this.dob,this.doj,'','','',this.companysignup);
          },
          (err)=>{
           if(err instanceof HttpErrorResponse){
@@ -129,7 +129,8 @@ export class AddEmployeesComponent implements OnInit {
          this.snackBar.open("Employee successfully Added",'Ok' ,{
            duration:3000
         });
-        this.employee=this.employee;
+        this.employee=new Employee("","",'','','','','',this.dob,this.doj,'','','',this.companysignup);
+       // this.employee=this.employee;
         },
         (err)=>{
          if(err instanceof HttpErrorResponse){

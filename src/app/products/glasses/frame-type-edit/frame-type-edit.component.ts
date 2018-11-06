@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { FrameType } from 'src/app/models/frame-type';
 
 @Component({
   selector: 'app-frame-type-edit',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FrameTypeEditComponent implements OnInit {
 
-  constructor() { }
-
+  constructor( private dialogRef: MatDialogRef<FrameTypeEditComponent>,@Inject(MAT_DIALOG_DATA) public data: FrameType) { }
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
   ngOnInit() {
+  }
+  onSubmit(){
+    console.log(this.data);
   }
 
 }

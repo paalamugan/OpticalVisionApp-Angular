@@ -1,5 +1,10 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {MatPaginator, MatSort, MatTableDataSource, MatDialog} from '@angular/material';
+import { FrameMaterialService } from 'src/app/services/frame-material.service';
+import { Router } from '@angular/router';
+import { FrameMaterial } from 'src/app/models/frame-material';
+import { HttpErrorResponse } from '@angular/common/http';
+import { FrameMaterialEditComponent } from '../frame-material-edit/frame-material-edit.component';
 
 export interface UserData {
   id: string;
@@ -19,23 +24,39 @@ const NAMES: string[] = ['Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack',
 })
 export class FrameMaterialComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'name', 'progress', 'color'];
-  dataSource: MatTableDataSource<UserData>;
-
+  displayedColumns: string[] = ['id', 'name','model', 'size', 'quantity','retailerPrice','wholesalerPrice','edit'];
+  // dataSource: MatTableDataSource<FrameMaterial>;
+  public framematerials: Array<FrameMaterial> = [];
+  public dataSource = new MatTableDataSource<FrameMaterial>(this.framematerials);
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor() {
+  constructor(private frameMaterialService:FrameMaterialService,private router:Router,public dialog: MatDialog) {
     // Create 100 users
-    const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
+    // const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
 
     // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(users);
+    
   }
 
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    this.frameMaterialService.getallFrameMaterial().subscribe(
+      (data:Array<FrameMaterial>)=>{
+        this.framematerials=data;
+        this.dataSource = new MatTableDataSource(this.framematerials);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+    },
+    (err)=>{
+      if(err instanceof HttpErrorResponse){
+        if(err.status===401){
+          this.router.navigateByUrl('login');
+         }
+      }
+    }
+    
+    )
+    
   }
 
   applyFilter(filterValue: string) {
@@ -45,22 +66,17 @@ export class FrameMaterialComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-  addFrameMaterial(){
-  
+  editFrameMaterial(framematerial:FrameMaterial){
+// console.log(framematerial);
+
+const dialogRef = this.dialog.open(FrameMaterialEditComponent,{
+  width:"600px",
+  data: framematerial
+});
+
+dialogRef.afterClosed().subscribe(result => {
+  // console.log(`Dialog result: ${result}`);
+});
   }
 }
 
-/** Builds and returns a new User. */
-function createNewUser(id: number): UserData {
-  const name =
-      NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
-      NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
-
-  return {
-    id: id.toString(),
-    name: name,
-    progress: Math.round(Math.random() * 100).toString(),
-    color: COLORS[Math.round(Math.random() * (COLORS.length - 1))]
-  };
-
-}

@@ -14,7 +14,7 @@ export class ListEmployeesComponent implements OnInit {
   displayedColumns: string[] = ['position', 'image','employeeid', 'employeeName', 'employeeEmail','address','mobileNumber','DOB','DOJ','adminAccess','edit'];
   public employees: Array<Employee> = [];
   public dataSource = new MatTableDataSource<Employee>(this.employees);
-Apiurl:string=""
+Apiurl:string="";
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }

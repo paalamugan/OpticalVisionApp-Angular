@@ -12,7 +12,7 @@
               </div>
               <div fxFlex="50">
                   <mat-form-field class="example-full-width">
-                      <input matInput type="text" placeholder="Frame Material Name" [(ngModel)]="framematerial.name" name="Name" #name="ngModel" required>
+                      <input matInput type="text" #nameInput="matInput" #nameSelect (focus)="$event.target.select()" placeholder="Frame Material Name" [(ngModel)]="framematerial.name" name="name" #name="ngModel" required autofocus>
                     </mat-form-field>
                 
                     <div *ngIf="name.invalid && (name.dirty || name.touched)" class="mat-body-1 center-align">
@@ -27,6 +27,29 @@
                   </div>
                
                   </div>
+                  <div fxLayout="row" fxLayoutAlign="start start">
+                    <div fxFlex="20">
+                        <label class="example-margin">Model:</label>
+                      </div>
+                      <div fxFlex="50">
+                        <mat-form-field class="example-full-width">
+                          <mat-select  placeholder="Frame Material Model" [(ngModel)]="framematerial.model" #model="ngModel" name="model" required>
+                            <!-- <mat-option>None</mat-option> -->
+                            <mat-option *ngFor="let model of models" [value]="model">{{model}}</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                        <div *ngIf="model.invalid && (model.dirty || model.touched)" class="mat-body-1 center-align">
+            
+                            <div *ngIf="model.errors.required">
+                              Model is required.
+                            </div>
+                           
+                          </div>
+                       
+                          </div>
+                       
+                          </div>
+                 
                   <div fxLayout="row" fxLayoutAlign="start start" >
                       <div fxFlex="20">
                           <label class="example-margin">Size:</label>
@@ -34,7 +57,7 @@
                         <div fxFlex="50">
             <mat-form-field class="example-full-width">
       
-                <input matInput type="number" placeholder="Size" [(ngModel)]="framematerial.size" name="size" #size="ngModel" required>
+                <input matInput type="number" placeholder="Size" [(ngModel)]="framematerial.size"  name="size" #size="ngModel" required>
           
               </mat-form-field>
       
@@ -54,7 +77,7 @@
                     <div fxFlex="50">
         <mat-form-field class="example-full-width">
     
-            <input matInput type="number" placeholder="Quantity" [(ngModel)]="framematerial.quantity" name="quantity" #quantity="ngModel" required>
+            <input matInput  type="number" #QuantitySelect #quantityInput="matInput" placeholder="Quantity" pattern="^\d+(\.\d+)*$" [(ngModel)]="framematerial.quantity" name="quantity" #quantity="ngModel" minlength="10" required>
       
           </mat-form-field>
     
@@ -63,8 +86,15 @@
               <div *ngIf="quantity.errors.required">
                   Quantity is required.
               </div>
-             
+              <div *ngIf="quantity.errors.minlength">
+                  Quantity is Greater than Zero.
+              </div>
+              <div *ngIf="quantity.errors.pattern">
+                  Quantity Rate is Not Valid.
+              </div>
             </div>
+            <div class="mat-body-1 center-align">{{addframematerial}}</div>
+            
           </div>
           </div>
               <div fxLayout="row" fxLayoutAlign="start start">
@@ -76,7 +106,7 @@
                         <div fxFlex="50">
         <mat-form-field class="example-full-width">
   
-            <input matInput type="number" placeholder="Retailer Price" [(ngModel)]="framematerial.retailerPrice" name="retailerPrice" #retailerPrice="ngModel" required minlength="10">
+            <input matInput type="number" #retailerpriceSelect #retailerpriceInput="matInput" placeholder="Retailer Price" pattern="[0-9]*" [(ngModel)]="framematerial.retailerPrice" name="retailerPrice" #retailerPrice="ngModel" required minlength="10">
       
           </mat-form-field>
           <div *ngIf="retailerPrice.invalid && (retailerPrice.dirty || retailerPrice.touched)" class="mat-body-1 center-align">
@@ -84,7 +114,12 @@
               <div *ngIf="retailerPrice.errors.required">
                   Retailer Price is required.
               </div>
-             
+              <div *ngIf="retailerPrice.errors.minlength">
+                  Retailer Price is Greater than Zero.
+              </div>
+              <div *ngIf="retailerPrice.errors.pattern">
+                  RetailerPrice Rate is Not Valid .
+              </div>
             </div>
           </div>
           <div fxFlex="50">
@@ -103,7 +138,7 @@
   <div fxLayout="row" fxLayoutAlign="start start">
       <div fxFlex="20"></div>
       <div fxFlex="50">
-<button mat-raised-button class="mat-subheading-2 button-style example-full-width" [disabled]="addFrameMaterial.invalid" (click)="OnSubmit()">Save</button>
+<button mat-raised-button class="mat-subheading-2 button-style example-full-width" type="reset" [disabled]="addFrameMaterial.invalid" (click)="OnSubmit(addFrameMaterial)">Save</button>
     </div>
   </div>
               </form>

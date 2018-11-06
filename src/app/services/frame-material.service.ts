@@ -16,4 +16,8 @@ export class FrameMaterialService {
   public getallFrameMaterial(){
     return this.httpClient.get(`${Utils.getallframematerialURL()}`);
   }
+  
+  updateFrameMaterial(framematerial:FrameMaterial){
+    return this.httpClient.put(`${Utils.updateframematerialURL()}`+`/${framematerial.uuid}`,framematerial);
+  }
 }

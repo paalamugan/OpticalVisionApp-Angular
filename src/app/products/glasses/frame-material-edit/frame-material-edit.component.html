@@ -1,3 +1,58 @@
-<p>
-  frame-material-edit works!
-</p>
+<!-- <h2 mat-dialog-title>Install Angular</h2> -->
+
+    <mat-toolbar color="primary" class="toolbar">
+      <mat-card-title class="mat-card-title">Edit Frame Material Details</mat-card-title>
+      <span class="toolbar-spacer"></span>
+      <mat-icon (click)="onNoClick()" class="cursor">cancel</mat-icon>
+    </mat-toolbar>
+    <form  #editFrameMaterial="ngForm">
+    <mat-dialog-content class="mat-typography">
+          <div class="form-group">
+          <div fxLayout="column">
+            <div fxFlex="100" style="margin-bottom: 10px;">
+              <mat-form-field class="example-full-width">
+                  <input matInput [(ngModel)]="data.name" placeholder=" Flavour Name" name="name" autofocus>
+                </mat-form-field>
+            </div>
+          
+          
+            <div fxFlex="100" style="margin-bottom: 10px;">
+              <mat-form-field class="example-full-width">
+                  <mat-select  placeholder="Frame Material Model" [(ngModel)]="data.model" name="model" required>
+                      <!-- <mat-option>None</mat-option> -->
+                      <mat-option *ngFor="let model of models" [value]="model">{{model}}</mat-option>
+                    </mat-select>
+                  <!-- <input matInput [disabled]="false" [(ngModel)]="data.model" [value]="data.model" placeholder="Flavour Code" name="data.code"> -->
+                </mat-form-field>
+            </div>
+            <div fxFlex="100" style="margin-bottom: 10px;">
+                <mat-form-field class="example-full-width">
+                    <input matInput [(ngModel)]="data.size" placeholder="Size" name="size" required>
+                  </mat-form-field>
+              </div>
+              <div fxFlex="100" style="margin-bottom: 10px;">
+                  <mat-form-field class="example-full-width">
+                      <input matInput [(ngModel)]="data.quantity" placeholder="Quantity" name="quantity" required>
+                    </mat-form-field>
+                </div>
+                <div fxFlex="100" style="margin-bottom: 10px;">
+                    <mat-form-field class="example-full-width">
+                        <input matInput [(ngModel)]="data.retailerPrice" placeholder="Retailer Price" name="retailerPrice" required>
+                      </mat-form-field>
+                  </div>
+                  <div fxFlex="100" style="margin-bottom: 10px;">
+                      <mat-form-field class="example-full-width">
+                          <input matInput [(ngModel)]="data.wholesalerPrice" placeholder="WholeSaler Price" name="wholesalerPrice">
+                        </mat-form-field>
+                    </div>
+          </div>
+       </div>
+    
+     
+</mat-dialog-content>
+<mat-dialog-actions align="start">
+    <button mat-raised-button color="primary" [disabled]="editFrameMaterial.invalid" (click)="onSubmit()" >Save</button>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <!-- <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button> -->
+  </mat-dialog-actions>
+</form>

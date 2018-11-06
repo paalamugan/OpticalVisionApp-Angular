@@ -322,6 +322,26 @@ div.addmargin{
 .example-full-width {
       width: 100%;
   }
+  table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  td, th {
+    padding-right: 10px !important;
+  }
+  .toolbar-spacer{
+    flex: 1 1 auto;
+}
+.toolbar{
+border-radius: 5px;
+}
+.form-group {
+    margin: 1rem 0rem;
+}
 
 //animation loader css style
 $speed: 1.5s;

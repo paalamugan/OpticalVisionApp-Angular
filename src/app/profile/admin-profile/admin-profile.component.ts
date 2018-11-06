@@ -6,6 +6,7 @@ import { Utils } from 'src/app/utils';
 import { SignupService } from 'src/app/services/signup.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-admin-profile',
@@ -49,7 +50,15 @@ adminshow_2:boolean=true;
       this.adminshow_2=false;
     this.adminshow_1=true;
     this.profiledetails="Edit Profile Details"
-    })
+    },
+    (err)=>{
+      if(err instanceof HttpErrorResponse){
+        if(err.status==300 || err.status===401){
+        this.router.navigateByUrl('login');
+        }
+      }
+    }
+    )
     
     
   }

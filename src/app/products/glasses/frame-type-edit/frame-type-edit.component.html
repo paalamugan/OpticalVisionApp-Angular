@@ -1,3 +1,32 @@
-<p>
-  frame-type-edit works!
-</p>
+<!-- <h2 mat-dialog-title>Install Angular</h2> -->
+
+<mat-toolbar color="primary" class="toolbar">
+    <mat-card-title class="mat-card-title">Edit Frame Type Details</mat-card-title>
+    <span class="toolbar-spacer"></span>
+    <mat-icon (click)="onNoClick()" class="cursor">cancel</mat-icon>
+  </mat-toolbar>
+<mat-dialog-content class="mat-typography">
+  <form (submit)="onSubmit()">
+      <div class="form-group">
+        <div fxLayout="column">
+          <div fxFlex="100" style="margin-bottom: 10px;">
+            <mat-form-field class="example-full-width">
+                <input matInput [disabled]="false" [(ngModel)]="data.name" [value]="data.name" placeholder=" Flavour Name" name="data.name" autofocus>
+              </mat-form-field>
+          </div>
+        
+        
+          <div fxFlex="100" style="margin-bottom: 10px;">
+            <mat-form-field class="example-full-width">
+                <input matInput [disabled]="false" [(ngModel)]="data.model" [value]="data.model" placeholder="Flavour Code" name="data.code">
+              </mat-form-field>
+          </div>
+        </div>
+     </div>
+  
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="start">
+  <button mat-raised-button color="primary" (click)="onSubmit()">Save</button>
+<button mat-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>

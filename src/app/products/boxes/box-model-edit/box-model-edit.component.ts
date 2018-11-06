@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { Boxes } from 'src/app/models/boxes';
 
 @Component({
   selector: 'app-box-model-edit',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BoxModelEditComponent implements OnInit {
 
-  constructor() { }
-
+  constructor( private dialogRef: MatDialogRef<BoxModelEditComponent>,@Inject(MAT_DIALOG_DATA) public data: Boxes) { }
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
   ngOnInit() {
+  }
+  onSubmit(){
+    console.log(this.data);
   }
 
 }

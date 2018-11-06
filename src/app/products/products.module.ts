@@ -11,6 +11,7 @@ import {
 			MatNativeDateModule,
 			MatDatepickerModule
 		} from '@angular/material';
+import {MatSelectModule} from '@angular/material/select';
 import { MatInputModule } from '@angular/material';
 import {MatPaginatorModule} from '@angular/material';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
@@ -56,7 +57,8 @@ import { FrameMaterialService } from '../services/frame-material.service';
 		 MatSnackBarModule,
 		 MatPaginatorModule,
          MatDialogModule,
-         MatSortModule
+		 MatSortModule,
+		 MatSelectModule
 	],
 	declarations: [FrameMaterialComponent,FrameTypeComponent,LensTypeComponent,BoxModelComponent, BoxModelAddComponent, BoxModelEditComponent, LensTypeAddComponent, LensTypeEditComponent, FrameMaterialAddComponent, FrameMaterialEditComponent, FrameTypeAddComponent, FrameTypeEditComponent],
 	providers:[AuthGuard
@@ -66,6 +68,6 @@ import { FrameMaterialService } from '../services/frame-material.service';
         //     multi:true
         //   }
 	],
-	entryComponents:[]
+	entryComponents:[FrameMaterialEditComponent,FrameTypeEditComponent,LensTypeEditComponent,BoxModelEditComponent]
 })
 export class ProductModule { }

@@ -11,6 +11,7 @@ import {
 			MatNativeDateModule,
 			MatDatepickerModule
 		} from '@angular/material';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatSelectModule} from '@angular/material/select';
 import { MatInputModule } from '@angular/material';
 import {MatPaginatorModule} from '@angular/material';
@@ -37,6 +38,12 @@ import { FrameMaterialEditComponent } from './glasses/frame-material-edit/frame-
 import { FrameTypeAddComponent } from './glasses/frame-type-add/frame-type-add.component';
 import { FrameTypeEditComponent } from './glasses/frame-type-edit/frame-type-edit.component';
 import { FrameMaterialService } from '../services/frame-material.service';
+import { FrameModelComponent } from './glasses/frame-model/frame-model.component';
+import { FrameModelAddComponent } from './glasses/frame-model-add/frame-model-add.component';
+import { FrameModelEditComponent } from './glasses/frame-model-edit/frame-model-edit.component';
+import { BrandComponent } from './brands/brand/brand.component';
+import { BrandAddComponent } from './brands/brand-add/brand-add.component';
+import { BrandEditComponent } from './brands/brand-edit/brand-edit.component';
 @NgModule({
 	imports: [
 		CommonModule,
@@ -58,9 +65,10 @@ import { FrameMaterialService } from '../services/frame-material.service';
 		 MatPaginatorModule,
          MatDialogModule,
 		 MatSortModule,
-		 MatSelectModule
+		 MatSelectModule,
+		 MatAutocompleteModule
 	],
-	declarations: [FrameMaterialComponent,FrameTypeComponent,LensTypeComponent,BoxModelComponent, BoxModelAddComponent, BoxModelEditComponent, LensTypeAddComponent, LensTypeEditComponent, FrameMaterialAddComponent, FrameMaterialEditComponent, FrameTypeAddComponent, FrameTypeEditComponent],
+	declarations: [FrameMaterialComponent,FrameTypeComponent,LensTypeComponent,BoxModelComponent, BoxModelAddComponent, BoxModelEditComponent, LensTypeAddComponent, LensTypeEditComponent, FrameMaterialAddComponent, FrameMaterialEditComponent, FrameTypeAddComponent, FrameTypeEditComponent, FrameModelComponent, FrameModelAddComponent, FrameModelEditComponent, BrandComponent, BrandAddComponent, BrandEditComponent],
 	providers:[AuthGuard
 		// {
         //     provide:HTTP_INTERCEPTORS,
@@ -68,6 +76,6 @@ import { FrameMaterialService } from '../services/frame-material.service';
         //     multi:true
         //   }
 	],
-	entryComponents:[FrameMaterialEditComponent,FrameTypeEditComponent,LensTypeEditComponent,BoxModelEditComponent]
+	entryComponents:[FrameMaterialEditComponent,FrameTypeEditComponent,LensTypeEditComponent,BoxModelEditComponent,BrandEditComponent,FrameModelEditComponent]
 })
 export class ProductModule { }

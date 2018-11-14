@@ -19,7 +19,6 @@ export class FrameMaterialEditComponent implements OnInit {
     this.dialogRef.close();
   }
   ngOnInit() {
-    console.log(this.data);
     var x = FrameMaterialModel;
     var options = Object.keys(x);
     this.models = options.slice(options.length / 2);

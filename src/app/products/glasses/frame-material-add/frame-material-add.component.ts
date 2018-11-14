@@ -13,7 +13,7 @@ import { NgForm } from '@angular/forms';
 })
 export class FrameMaterialAddComponent implements OnInit {
   selected:string="";
-  FrameMaterialModel : typeof FrameMaterialModel = FrameMaterialModel;
+FrameMaterialModel : typeof FrameMaterialModel = FrameMaterialModel;
 framematerial:FrameMaterial=new FrameMaterial('','',1,this.selected,1,1,1,'');
 models : string[];
 @ViewChild('quantityInput') Quantity: MatInput;

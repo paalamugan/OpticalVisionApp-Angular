@@ -1,0 +1,118 @@
+<!-- <h2 mat-dialog-title>Install Angular</h2> -->
+
+<mat-toolbar color="primary" class="toolbar">
+  <mat-card-title class="mat-card-title">Edit Frame Model Details</mat-card-title>
+  <span class="toolbar-spacer"></span>
+  <mat-icon (click)="onNoClick()" class="cursor">cancel</mat-icon>
+</mat-toolbar>
+<form  #editFrameModel="ngForm">
+<mat-dialog-content class="mat-typography">
+      <div class="form-group">
+      <div fxLayout="column">
+        <div fxFlex="100" style="margin-bottom: 10px;">
+          <mat-form-field class="example-full-width">
+            <input type="text" #nameInput="matInput" #nameSelect placeholder="Brand Name" aria-label="Number" matInput [formControl]="myControl" name="brand" [matAutocomplete]="auto" autofocus required>
+            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+              <mat-option (onSelectionChange)="onSelectionChange($event,option)" *ngFor="let option of filteredOptions | async" [value]="option.name">
+                {{option.name}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+       
+          <div *ngIf="myControl.invalid && (myControl.dirty || myControl.touched)" class="mat-body-1 center-align">
+
+            <div *ngIf="myControl.errors.required">
+              Brand is required.
+            </div>
+           
+          </div>
+        </div>
+      
+      
+        <div fxFlex="100" style="margin-bottom: 10px;">
+          <mat-form-field class="example-full-width">
+    
+            <input matInput type="text" placeholder="Model" [(ngModel)]="data.model"  name="model" #model="ngModel" required>
+      
+          </mat-form-field>
+  
+          <div *ngIf="model.invalid && (model.dirty || model.touched)" class="mat-body-1 center-align">
+  
+            <div *ngIf="model.errors.required">
+              Model is required.
+            </div>
+           
+          </div>
+        </div>
+        <div fxFlex="100" style="margin-bottom: 10px;">
+          <mat-form-field class="example-full-width">
+            <mat-select  placeholder="Frame Type" [(ngModel)]="data.frametype" #frametype="ngModel" name="frametype" required>
+              <!-- <mat-option>None</mat-option> -->
+              <mat-option *ngFor="let frametype of frametypes" [value]="frametype">{{frametype}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div *ngIf="frametype.invalid && (frametype.dirty || frametype.touched)" class="mat-body-1 center-align">
+
+              <div *ngIf="frametype.errors.required">
+                Frametype is required.
+              </div>
+             
+            </div>
+          </div>
+          <div fxFlex="100" style="margin-bottom: 10px;">
+            <mat-form-field class="example-full-width">
+    
+              <input matInput  type="number" #QuantitySelect #quantityInput="matInput" placeholder="Quantity" pattern="^\d+(\.\d+)*$" [(ngModel)]="data.quantity" name="quantity" #quantity="ngModel" minlength="10" required>
+        
+            </mat-form-field>
+      
+            <div *ngIf="quantity.invalid && (quantity.dirty || quantity.touched)" class="mat-body-1 center-align">
+        
+                <div *ngIf="quantity.errors.required">
+                    Quantity is required.
+                </div>
+                <div *ngIf="quantity.errors.minlength">
+                    Quantity is Greater than Zero.
+                </div>
+                <div *ngIf="quantity.errors.pattern">
+                    Quantity Rate is Not Valid.
+                </div>
+              </div>
+            </div>
+            <div fxFlex="100" style="margin-bottom: 10px;">
+              <mat-form-field class="example-full-width">
+  
+                <input matInput type="number" placeholder="Retailer Price" pattern="[0-9]*" [(ngModel)]="data.retailerPrice" name="retailerPrice" #retailerPrice="ngModel" required minlength="10">
+          
+              </mat-form-field>
+              <div *ngIf="retailerPrice.invalid && (retailerPrice.dirty || retailerPrice.touched)" class="mat-body-1 center-align">
+          
+                  <div *ngIf="retailerPrice.errors.required">
+                      Retailer Price is required.
+                  </div>
+                  <div *ngIf="retailerPrice.errors.minlength">
+                      Retailer Price is Greater than Zero.
+                  </div>
+                  <div *ngIf="retailerPrice.errors.pattern">
+                      RetailerPrice Rate is Not Valid .
+                  </div>
+                </div>
+              </div>
+              <div fxFlex="100" style="margin-bottom: 10px;">
+                <mat-form-field class="example-full-width">
+  
+                  <input matInput type="number" placeholder="WholeSaler Price" [(ngModel)]="data.wholesalerPrice"  name="wholesalerPrice">
+            
+                </mat-form-field>
+                </div>
+      </div>
+   </div>
+
+ 
+</mat-dialog-content>
+<mat-dialog-actions align="start">
+<button mat-raised-button color="primary" [disabled]="editFrameModel.invalid || myControl.invalid" (click)="onSubmit()" >Save</button>
+<button mat-button mat-dialog-close>Cancel</button>
+<!-- <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button> -->
+</mat-dialog-actions>
+</form>

@@ -5,18 +5,6 @@ import { Router } from '@angular/router';
 import { FrameMaterial } from 'src/app/models/frame-material';
 import { HttpErrorResponse } from '@angular/common/http';
 import { FrameMaterialEditComponent } from '../frame-material-edit/frame-material-edit.component';
-
-export interface UserData {
-  id: string;
-  name: string;
-  progress: string;
-  color: string;
-}
-const COLORS: string[] = ['maroon', 'red', 'orange', 'yellow', 'olive', 'green', 'purple',
-  'fuchsia', 'lime', 'teal', 'aqua', 'blue', 'navy', 'black', 'gray'];
-const NAMES: string[] = ['Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack',
-  'Charlotte', 'Theodore', 'Isla', 'Oliver', 'Isabella', 'Jasper',
-  'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'];
 @Component({
   selector: 'app-frame-material',
   templateUrl: './frame-material.component.html',

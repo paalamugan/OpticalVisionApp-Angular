@@ -50,7 +50,13 @@ export const adminmenus = [
                             'open'   : false,
                             'link':false,
                             'sub':[
-                                
+                                {
+                                    'name': 'Frame Model',
+                                    'icon': './assets/icon/frame_type.svg',
+                                    'open' : false,
+                                    'link':'products/glasses/frame_model',
+                                    'Tooltip':'FrameModel'
+                                },
                                     {
                                         'name': 'Frame Material',
                                         'icon': './assets/icon/frame_material.svg',
@@ -58,13 +64,13 @@ export const adminmenus = [
                                         'link':'products/glasses/frame_material',
                                         'Tooltip':'FrameMaterial'
                                     },
-                                    {
-                                        'name': 'Frame Type',
-                                        'icon': './assets/icon/frame_type.svg',
-                                        'open': false,
-                                        'link':'products/glasses/frame_type',
-                                        'Tooltip':'FrameType'
-                                    },
+                                    // {
+                                    //     'name': 'Frame Type',
+                                    //     'icon': './assets/icon/frame_type.svg',
+                                    //     'open': false,
+                                    //     'link':'products/glasses/frame_type',
+                                    //     'Tooltip':'FrameType'
+                                    // },
                                     {
                                         'name': 'Lens Type',
                                         'icon': './assets/icon/Lens.svg',
@@ -74,6 +80,13 @@ export const adminmenus = [
                                     }
                             
                         ]
+                        },
+                        {
+                            'name': 'Brand',
+                            'icon': './assets/icon/Brand.svg',
+                            'open'   : false,
+                            'link':'products/brands/brand',
+                            'Tooltip':'Brand'
                         },
                         {
                             'name': 'Boxes',

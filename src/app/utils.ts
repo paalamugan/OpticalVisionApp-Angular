@@ -7,6 +7,8 @@ const EMPLOYEE_URL = API_URL + "api/visionapp/employee/";
 const FRAME_MATERIAL_URL = API_URL + "api/visionapp/framematerial/";
 const BRAND_URL = API_URL + "api/visionapp/brand/";
 const FRAME_MODEL_URL = API_URL + "api/visionapp/framemodel/";
+const LENS_TYPE_URL = API_URL + "api/visionapp/lenstype/";
+const BOXES_URL = API_URL + "api/visionapp/boxes/";
 
 
 const REGISTER_ACTION='register'
@@ -19,6 +21,7 @@ const ADD_ACTION = "add";
 const UPDATE_ACTION = "update";
 const DELETE_ACTION ="delete";
 const FIND_ACTION="find";
+const FIND_ACTION_ONE="/findone";
 const FORGET_PASSWORD_ACTION ="forgetpassword";
 
 
@@ -76,14 +79,14 @@ public static addemployeeURL() {
     return EMPLOYEE_URL + ADD_ACTION;
 }
 public static getemployeeURL() {
-    return EMPLOYEE_URL +  GET_ACTION ;
+    return EMPLOYEE_URL +  GET_ACTION_ONE ;
 }
 public static updateemployeeURL() {
     return EMPLOYEE_URL + UPDATE_ACTION ;
 }
 
 public static getAllemployeeURL() {
-    return EMPLOYEE_URL;
+    return EMPLOYEE_URL +  GET_ACTION;
 }
 
 //frame material Api Method
@@ -127,10 +130,38 @@ public static updateframemodelURL() {
     return FRAME_MODEL_URL + UPDATE_ACTION;
 }
 public static findByModelURL() {
-    return FRAME_MODEL_URL + FIND_ACTION;
+    return FRAME_MODEL_URL + FIND_ACTION + FIND_ACTION_ONE;
+}
+//LensTYpe Api Method
+public static addLensTypeURL() {
+    return LENS_TYPE_URL + ADD_ACTION;
+}
+public static getallLensTypeURL() {
+    return LENS_TYPE_URL + GET_ACTION;
+}
+public static getLensTypeURL() {
+    return LENS_TYPE_URL + GET_ACTION_ONE;
+}
+public static updateLensTypeURL() {
+    return LENS_TYPE_URL + UPDATE_ACTION;
+}
+public static findByNameURL() {
+    return LENS_TYPE_URL + FIND_ACTION + FIND_ACTION_ONE;
 }
 
-
+//Boxes Api Methods
+public static addBoxesURL() {
+    return BOXES_URL + ADD_ACTION;
+}
+public static getallBoxesURL() {
+    return BOXES_URL + GET_ACTION;
+}
+public static getBoxesURL() {
+    return BOXES_URL + GET_ACTION_ONE;
+}
+public static updateBoxesURL() {
+    return BOXES_URL + UPDATE_ACTION;
+}
 //dummy Api
 public static getDummyURL() {
     return DUMMY_URL;

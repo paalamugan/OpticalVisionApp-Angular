@@ -115,7 +115,7 @@ this.DOBtoString=this.employee.DOB.toLocaleDateString();
         );
       }else{
           this.snackBar.open("Select Only Jpeg and Png format Image","Alert",{
-            duration:3000
+            duration:10000
 })
       }
     }else{

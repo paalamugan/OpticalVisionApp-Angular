@@ -69,10 +69,10 @@ export class FrameModelAddComponent implements OnInit {
     this.framemodelService.findByModel(this.framemodel.model,this.framemodel.brand.uuid)
     .subscribe((framemodel: FrameModel) => {
       if (framemodel != null) {
-        // this.framemodel = new FrameModel('',this.brand,'','',1,1,1,1,'');
         this.framemodel=framemodel;
         this.framemodel.fk_companyid="";
         this.framemodel.uuid="";
+         // this.framemodel = new FrameModel('',this.brand,'','',1,1,1,1,'');
       }
     });
    }

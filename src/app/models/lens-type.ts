@@ -1,5 +1,6 @@
 export class LensType {
-    constructor(public powerlenstype:string,
+    constructor(public uuid:string,
+        public powerlenstype:string,
         public name:string,
         public lensmaterial:string,
         public quantity:number,

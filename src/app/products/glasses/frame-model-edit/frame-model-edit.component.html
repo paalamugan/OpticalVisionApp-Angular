@@ -1,4 +1,4 @@
-<!-- <h2 mat-dialog-title>Install Angular</h2> -->
+
 
 <mat-toolbar color="primary" class="toolbar">
   <mat-card-title class="mat-card-title">Edit Frame Model Details</mat-card-title>
@@ -62,7 +62,7 @@
           <div fxFlex="100" style="margin-bottom: 10px;">
             <mat-form-field class="example-full-width">
     
-              <input matInput  type="number" #QuantitySelect #quantityInput="matInput" placeholder="Quantity" pattern="^\d+(\.\d+)*$" [(ngModel)]="data.quantity" name="quantity" #quantity="ngModel" minlength="10" required>
+              <input matInput  type="number" #QuantitySelect #quantityInput="matInput" placeholder="Quantity" pattern="[0-9]*" [(ngModel)]="data.quantity" name="quantity" #quantity="ngModel" minlength="10" required>
         
             </mat-form-field>
       

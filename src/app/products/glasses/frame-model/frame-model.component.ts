@@ -16,7 +16,7 @@ export class FrameModelComponent implements OnInit {
   displayedColumns: string[] = ['id', 'brand','model','frametype', 'quantity','retailerPrice','wholesalerPrice','edit'];
   // dataSource: MatTableDataSource<FrameMaterial>;
   public framemodels: Array<FrameModel> = [];
-  public dataSource = new MatTableDataSource<FrameModel>(this.framemodels);
+   dataSource : MatTableDataSource<FrameModel>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -47,13 +47,11 @@ export class FrameModelComponent implements OnInit {
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
-
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
-    }
+      }
   }
   editFrameModel(framemodel:FrameModel){
- console.log(framemodel);
 
 const dialogRef = this.dialog.open(FrameModelEditComponent,{
   width:"600px",

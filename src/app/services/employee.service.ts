@@ -7,7 +7,6 @@ import { Utils } from '../utils';
   providedIn: 'root'
 })
 export class EmployeeService {
-employee:Employee
   constructor(private httpClient: HttpClient) { }
   addEmployee(employee:any){
     return this.httpClient.post(`${Utils.addemployeeURL()}`,employee);

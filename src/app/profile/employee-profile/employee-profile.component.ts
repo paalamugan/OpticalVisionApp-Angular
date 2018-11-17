@@ -24,11 +24,11 @@ userimage:any;
   ngOnInit() {
     this.loginservice.getUserName().subscribe((data:any)=>{
       if(data.Identifier=="employee" || data.Identifier=="employee-admin"){
-        if(data.userImage==="null"){
-          this.userimage=false;
-        }else{
+        // if(data.userImage==="null"){
+        //   this.userimage=false;
+        // }else{
           this.userimage=Utils.APIURL+data.userImage;
-        }
+        // }
         this.Identifier=data.Identifier;
         this.username=data.username;
         this.companyname=data.companyname;

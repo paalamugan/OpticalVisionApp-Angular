@@ -104,11 +104,14 @@
                   </div>
                   <div fxFlex="50">
              <mat-form-field class="example-full-width">
-              <textarea matInput type="number" placeholder="Address"  [(ngModel)]="employee.address"  name="address" #address="ngModel" required minlength="10"></textarea>
+              <textarea matInput type="number" placeholder="Address"  [(ngModel)]="employee.address"  name="address" #address="ngModel" required minlength="5"></textarea>
             </mat-form-field>
             <div  *ngIf="address.invalid && (address.dirty || address.touched)" class="mat-body-1 center-align">
               <div *ngIf="address.errors.required">
                 Address is required.
+              </div>
+              <div *ngIf="address.errors.minlength">
+                Address must be at least 5 characters long.
               </div>
           
             </div>
@@ -120,8 +123,8 @@
                   </div>
                   <div fxFlex="50">
              <mat-form-field class="example-full-width">
-                <input matInput [matDatepicker]="picker3" placeholder="D.O.B" [(ngModel)]="employee.DOB" name="dob" #dob="ngModel" required disabled>
-                <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                <input matInput [matDatepicker]="picker3" placeholder="D.O.B" (dateChange)="addEvent($event)" [(ngModel)]="employee.DOB" name="dob" #dob="ngModel" disabled required>
+                <mat-datepicker-toggle matSuffix [for]="picker3" ></mat-datepicker-toggle>
                 <mat-datepicker #picker3 disabled="false"></mat-datepicker>
               </mat-form-field>
               <div  *ngIf="dob.invalid && (dob.dirty || dob.touched)" class="mat-body-1 center-align">
@@ -132,13 +135,13 @@
                 </div>
               </div>
               </div>
-              <div fxLayout="row" fxLayoutAlign="start start">
+              <div fxLayout="row" [hidden]="hiddenDOJ" fxLayoutAlign="start start">
                   <div fxFlex="20">
                       <label class="example-margin">Date Of Joining:</label>
                     </div>
                     <div fxFlex="50">
               <mat-form-field class="example-full-width">
-                  <input matInput [matDatepicker]="picker4" placeholder="D.O.J"  [(ngModel)]="employee.DOJ" #doj="ngModel" name="doj" required disabled>
+                  <input matInput [matDatepicker]="picker4" placeholder="D.O.J" [min]="minDate"  [(ngModel)]="employee.DOJ" #doj="ngModel" name="doj" disabled required>
                   <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
                   <mat-datepicker #picker4 disabled="false"></mat-datepicker>
                 </mat-form-field>

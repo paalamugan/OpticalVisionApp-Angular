@@ -101,7 +101,7 @@
                     <div fxFlex="50">
         <mat-form-field class="example-full-width">
     
-            <input matInput  type="number" #QuantitySelect #quantityInput="matInput" placeholder="Quantity" pattern="^\d+(\.\d+)*$" [(ngModel)]="framemodel.quantity" name="quantity" #quantity="ngModel" minlength="10" required>
+            <input matInput  type="number" #QuantitySelect #quantityInput="matInput" placeholder="Quantity" pattern="[0-9]*" [(ngModel)]="framemodel.quantity" name="quantity" #quantity="ngModel" minlength="10" required>
       
           </mat-form-field>
     

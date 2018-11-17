@@ -1,32 +1,100 @@
-<!-- <h2 mat-dialog-title>Install Angular</h2> -->
+
 
 <mat-toolbar color="primary" class="toolbar">
-    <mat-card-title class="mat-card-title">Edit Boxes Details</mat-card-title>
-    <span class="toolbar-spacer"></span>
-    <mat-icon (click)="onNoClick()" class="cursor">cancel</mat-icon>
-  </mat-toolbar>
+  <mat-card-title class="mat-card-title">Edit Boxes Details</mat-card-title>
+  <span class="toolbar-spacer"></span>
+  <mat-icon (click)="onNoClick()" class="cursor">cancel</mat-icon>
+</mat-toolbar>
+<form  #editboxes="ngForm">
 <mat-dialog-content class="mat-typography">
-  <form (submit)="onSubmit()">
       <div class="form-group">
-        <div fxLayout="column">
-          <div fxFlex="100" style="margin-bottom: 10px;">
-            <mat-form-field class="example-full-width">
-                <input matInput [disabled]="false" [(ngModel)]="data.name" [value]="data.name" placeholder=" Flavour Name" name="data.name" autofocus>
-              </mat-form-field>
-          </div>
-        
-        
-          <div fxFlex="100" style="margin-bottom: 10px;">
-            <mat-form-field class="example-full-width">
-                <input matInput [disabled]="false" [(ngModel)]="data.model" [value]="data.model" placeholder="Flavour Code" name="data.code">
-              </mat-form-field>
+      <div fxLayout="column">
+      
+      
+        <div fxFlex="100" style="margin-bottom: 10px;">
+          <mat-form-field class="example-full-width">
+  
+            <input matInput type="text" placeholder="Name" [(ngModel)]="data.name"  name="name" #name="ngModel" autofocus required>
+      
+          </mat-form-field>
+  
+          <div *ngIf="name.invalid && (name.dirty || name.touched)" class="mat-body-1 center-align">
+  
+            <div *ngIf="name.errors.required">
+              Name is required.
+            </div>
+           
           </div>
         </div>
-     </div>
+        <div fxFlex="100" style="margin-bottom: 10px;">
+          <mat-form-field class="example-full-width">
+
+            <input matInput type="text" placeholder="Box Model" [(ngModel)]="data.box_model"  name="box_model" #boxmodel="ngModel" required>
+      
+          </mat-form-field>
+      
+          <div *ngIf="boxmodel.invalid && (boxmodel.dirty || boxmodel.touched)" class="mat-body-1 center-align">
+      
+            <div *ngIf="boxmodel.errors.required">
+              Box Model is required.
+            </div>
+           
+          </div>
+          </div>
+          <div fxFlex="100" style="margin-bottom: 10px;">
+            <mat-form-field class="example-full-width">
+    
+              <input matInput  type="number" placeholder="Quantity" pattern="[0-9]*" [(ngModel)]="data.quantity" name="quantity" #quantity="ngModel" minlength="10" required>
+        
+            </mat-form-field>
+      
+            <div *ngIf="quantity.invalid && (quantity.dirty || quantity.touched)" class="mat-body-1 center-align">
+        
+                <div *ngIf="quantity.errors.required">
+                    Quantity is required.
+                </div>
+                <div *ngIf="quantity.errors.minlength">
+                    Quantity is Greater than Zero.
+                </div>
+                <div *ngIf="quantity.errors.pattern">
+                    Quantity Rate is Not Valid.
+                </div>
+              </div>
+            </div>
+            <div fxFlex="100" style="margin-bottom: 10px;">
+              <mat-form-field class="example-full-width">
   
-    </form>
+                <input matInput type="number" placeholder="Retailer Price" pattern="[0-9]*" [(ngModel)]="data.retailerPrice" name="retailerPrice" #retailerPrice="ngModel" required minlength="10">
+          
+              </mat-form-field>
+              <div *ngIf="retailerPrice.invalid && (retailerPrice.dirty || retailerPrice.touched)" class="mat-body-1 center-align">
+          
+                  <div *ngIf="retailerPrice.errors.required">
+                      Retailer Price is required.
+                  </div>
+                  <div *ngIf="retailerPrice.errors.minlength">
+                      Retailer Price is Greater than Zero.
+                  </div>
+                  <div *ngIf="retailerPrice.errors.pattern">
+                      RetailerPrice Rate is Not Valid .
+                  </div>
+                </div>
+              </div>
+              <div fxFlex="100" style="margin-bottom: 10px;">
+                <mat-form-field class="example-full-width">
+  
+                  <input matInput type="number" placeholder="WholeSaler Price" [(ngModel)]="data.wholesalerPrice"  name="wholesalerPrice">
+            
+                </mat-form-field>
+                </div>
+      </div>
+   </div>
+
+ 
 </mat-dialog-content>
 <mat-dialog-actions align="start">
-  <button mat-raised-button color="primary" (click)="onSubmit()">Save</button>
+<button mat-raised-button color="primary" [disabled]="editboxes.invalid" (click)="onSubmit()" >Save</button>
 <button mat-button mat-dialog-close>Cancel</button>
+<!-- <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button> -->
 </mat-dialog-actions>
+</form>

@@ -44,6 +44,7 @@ import { FrameModelEditComponent } from './glasses/frame-model-edit/frame-model-
 import { BrandComponent } from './brands/brand/brand.component';
 import { BrandAddComponent } from './brands/brand-add/brand-add.component';
 import { BrandEditComponent } from './brands/brand-edit/brand-edit.component';
+import { LensTypeService } from '../services/lens-type.service';
 @NgModule({
 	imports: [
 		CommonModule,

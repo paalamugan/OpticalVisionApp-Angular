@@ -1,6 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { Boxes } from 'src/app/models/boxes';
+import { BoxesService } from 'src/app/services/boxes.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-box-model-edit',
@@ -9,14 +12,29 @@ import { Boxes } from 'src/app/models/boxes';
 })
 export class BoxModelEditComponent implements OnInit {
 
-  constructor( private dialogRef: MatDialogRef<BoxModelEditComponent>,@Inject(MAT_DIALOG_DATA) public data: Boxes) { }
+  constructor( private dialogRef: MatDialogRef<BoxModelEditComponent>,private boxesservice:BoxesService,private router:Router,private snackBar:MatSnackBar,@Inject(MAT_DIALOG_DATA) public data: Boxes) { }
   onNoClick(): void {
     this.dialogRef.close();
   }
   ngOnInit() {
   }
   onSubmit(){
-    console.log(this.data);
+    this.boxesservice.updateBoxes(this.data).subscribe(
+      ()=>{
+        this.dialogRef.close();
+    },
+    (err)=>{
+      if(err instanceof HttpErrorResponse){
+        if(err.status===401){
+              this.router.navigateByUrl('login');
+        }else{
+          this.snackBar.open("Updated Failed","Alert",{
+            duration:4000
+          });
+        }
+      }
+    }
+    );
   }
 
 }

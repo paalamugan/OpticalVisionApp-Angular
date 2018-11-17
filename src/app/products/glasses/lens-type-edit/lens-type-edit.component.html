@@ -1,32 +1,120 @@
-<!-- <h2 mat-dialog-title>Install Angular</h2> -->
+
 
 <mat-toolbar color="primary" class="toolbar">
     <mat-card-title class="mat-card-title">Edit Lens Type Details</mat-card-title>
     <span class="toolbar-spacer"></span>
     <mat-icon (click)="onNoClick()" class="cursor">cancel</mat-icon>
   </mat-toolbar>
-<mat-dialog-content class="mat-typography">
-  <form (submit)="onSubmit()">
-      <div class="form-group">
+  <form  #editlenstype="ngForm">
+  <mat-dialog-content class="mat-typography">
+        <div class="form-group">
         <div fxLayout="column">
           <div fxFlex="100" style="margin-bottom: 10px;">
             <mat-form-field class="example-full-width">
-                <input matInput [disabled]="false" [(ngModel)]="data.name" [value]="data.name" placeholder=" Flavour Name" name="data.name" autofocus>
+                <mat-select  placeholder="Power LensType" #powerlensInput [(ngModel)]="data.powerlenstype" #powerlenstype="ngModel" name="powerlenstype" required>
+                  <mat-option *ngFor="let powerlens of powerlenstypes" [value]="powerlens">{{powerlens}}</mat-option>
+                </mat-select>
               </mat-form-field>
+              <div *ngIf="powerlenstype.invalid && (powerlenstype.dirty || powerlenstype.touched)" class="mat-body-1 center-align">
+  
+                  <div *ngIf="powerlenstype.errors.required">
+                    PowerLensType is required.
+                  </div>
+                 
+                </div>
           </div>
         
         
           <div fxFlex="100" style="margin-bottom: 10px;">
             <mat-form-field class="example-full-width">
-                <input matInput [disabled]="false" [(ngModel)]="data.model" [value]="data.model" placeholder="Flavour Code" name="data.code">
+  
+                <input matInput type="text" placeholder="Name" [(ngModel)]="data.name" (focusout)="findname()"  name="name" #name="ngModel" required>
+          
               </mat-form-field>
+      
+              <div *ngIf="name.invalid && (name.dirty || name.touched)" class="mat-body-1 center-align">
+      
+                <div *ngIf="name.errors.required">
+                  Name is required.
+                </div>
+               
+              </div>
           </div>
+          <div fxFlex="100" style="margin-bottom: 10px;">
+            <div fxLayout="row" fxLayout.lt-md="column">
+                <div fxFlex="20">
+                        <label style="margin-left: 10px; color: #9a9797;">Lens Material:</label>
+                    </div>
+                    <div fxFlex="50">
+            <mat-radio-group [(ngModel)]="data.lensmaterial" name="lensmaterial" #lensmaterial="ngModel" required>
+                <mat-radio-button class="example-radio-button"  value="Fiber">Fiber</mat-radio-button>
+                <mat-radio-button class="example-radio-button"  value="Glasses">Glasses</mat-radio-button>
+              </mat-radio-group>
+                    
+                    <div *ngIf="lensmaterial.invalid && (lensmaterial.dirty || lensmaterial.touched)" class="mat-body-1 center-align">
+        
+                        <div *ngIf="lensmaterial.errors.required">
+                          Lens Material is required.
+                        </div>
+                       
+                      </div>
+                    </div>
+                    </div>
+            </div>
+            <div fxFlex="100" style="margin-bottom: 10px;">
+              <mat-form-field class="example-full-width">
+      
+                <input matInput  type="number" placeholder="Quantity" pattern="[0-9]*" [(ngModel)]="data.quantity" name="quantity" #quantity="ngModel" minlength="10" required>
+          
+              </mat-form-field>
+        
+              <div *ngIf="quantity.invalid && (quantity.dirty || quantity.touched)" class="mat-body-1 center-align">
+          
+                  <div *ngIf="quantity.errors.required">
+                      Quantity is required.
+                  </div>
+                  <div *ngIf="quantity.errors.minlength">
+                      Quantity is Greater than Zero.
+                  </div>
+                  <div *ngIf="quantity.errors.pattern">
+                      Quantity Rate is Not Valid.
+                  </div>
+                </div>
+              </div>
+              <div fxFlex="100" style="margin-bottom: 10px;">
+                <mat-form-field class="example-full-width">
+    
+                  <input matInput type="number" placeholder="Retailer Price" pattern="[0-9]*" [(ngModel)]="data.retailerPrice" name="retailerPrice" #retailerPrice="ngModel" required minlength="10">
+            
+                </mat-form-field>
+                <div *ngIf="retailerPrice.invalid && (retailerPrice.dirty || retailerPrice.touched)" class="mat-body-1 center-align">
+            
+                    <div *ngIf="retailerPrice.errors.required">
+                        Retailer Price is required.
+                    </div>
+                    <div *ngIf="retailerPrice.errors.minlength">
+                        Retailer Price is Greater than Zero.
+                    </div>
+                    <div *ngIf="retailerPrice.errors.pattern">
+                        RetailerPrice Rate is Not Valid .
+                    </div>
+                  </div>
+                </div>
+                <div fxFlex="100" style="margin-bottom: 10px;">
+                  <mat-form-field class="example-full-width">
+    
+                    <input matInput type="number" placeholder="WholeSaler Price" [(ngModel)]="data.wholesalerPrice"  name="wholesalerPrice">
+              
+                  </mat-form-field>
+                  </div>
         </div>
      </div>
   
-    </form>
-</mat-dialog-content>
-<mat-dialog-actions align="start">
-  <button mat-raised-button color="primary" (click)="onSubmit()">Save</button>
-<button mat-button mat-dialog-close>Cancel</button>
-</mat-dialog-actions>
+   
+  </mat-dialog-content>
+  <mat-dialog-actions align="start">
+  <button mat-raised-button color="primary" [disabled]="editlenstype.invalid" (click)="onSubmit()" >Save</button>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <!-- <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button> -->
+  </mat-dialog-actions>
+  </form>

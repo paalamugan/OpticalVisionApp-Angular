@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { MatSnackBar, MatInput } from '@angular/material';
 import { LensType } from 'src/app/models/lens-type';
 import { HttpErrorResponse } from '@angular/common/http';
+import { LoginService } from 'src/app/services/login.service';
+import { Admin } from 'src/app/models/admin';
 
 @Component({
   selector: 'app-lens-type-add',
@@ -16,9 +18,14 @@ export class LensTypeAddComponent implements OnInit {
   powerlenstypes : string[];
   lenstype:LensType=new LensType('','','','',1,1,1,'');
   @ViewChild('powerlensInput') powerlensInput: MatInput;
-  constructor(private lenstypeService:LensTypeService,private router:Router,private snackBar:MatSnackBar) { }
+  constructor(private lenstypeService:LensTypeService,private loginservice:LoginService,private router:Router,private snackBar:MatSnackBar) { }
 
   ngOnInit() {
+    this.loginservice.getUserName().subscribe((data:Admin)=>{
+      if(data.Identifier==="employee"){
+        this.router.navigateByUrl('login');
+      }
+      });
     var x = PowerLensType;
     var options = Object.keys(x);
     this.powerlenstypes = options.slice(options.length / 2);

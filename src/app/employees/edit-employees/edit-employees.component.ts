@@ -4,6 +4,9 @@ import { Employee } from 'src/app/models/employee';
 import{ActivatedRoute, Router} from '@angular/router';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { CompanySignup } from 'src/app/models/companysignup';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Admin } from 'src/app/models/admin';
+import { LoginService } from 'src/app/services/login.service';
 @Component({
   selector: 'app-edit-employees',
   templateUrl: './edit-employees.component.html',
@@ -22,7 +25,7 @@ DOJtoString:string;
   newpasswordvalue:string="";
   currentpassword:string="";
   // constructor( private dialogRef: MatDialogRef<EditEmployeesComponent>, @Inject(MAT_DIALOG_DATA) public data: Employee) { }
-  constructor(private route:ActivatedRoute, private employeeservice:EmployeeService,private router:Router,private snackBar:MatSnackBar){}
+  constructor(private route:ActivatedRoute,private loginservice:LoginService, private employeeservice:EmployeeService,private router:Router,private snackBar:MatSnackBar){}
   employee:Employee=new Employee("","",'','','','','',this.dob,this.doj,'','','',this.companysignup);
   countfilelength:number;
   onFileChange(event) {
@@ -62,15 +65,39 @@ DOJtoString:string;
       });
     }( document, window, 0 ));
     let id =this.route.snapshot.params['id'];
-    this.employeeservice.getemployee(id).subscribe(
-(data:Employee)=>{
-  this.employee=data;
-  this.currentpassword=this.employee.employeePassword;
-  this.dob=this.employee.DOB;
-  this.doj=this.employee.DOJ;
-}
-
-    )
+    this.loginservice.getUserName().subscribe((data:Admin)=>{
+      if(data.Identifier==="admin" || data.Identifier==="employee-admin"){
+        this.employeeservice.getemployee(id).subscribe(
+          (data:Employee)=>{
+            this.employee=data;
+            this.currentpassword=this.employee.employeePassword;
+            let CDOB=new Date(data.DOB);
+            this.employee.DOB=CDOB;
+            let CDOJ=new Date(data.DOJ);
+            this.employee.DOJ=CDOJ;
+          },
+          (err)=>{
+            if(err instanceof HttpErrorResponse){
+              if(err.status===401){
+                this.router.navigateByUrl('login');
+               }
+            }
+          }
+        );
+      }else{
+        this.router.navigateByUrl('login');
+      }
+    },
+    (err)=>{
+      if(err instanceof HttpErrorResponse){
+       if(err.status === 401){
+          this.router.navigateByUrl('login');
+        }
+      }
+     }
+     );
+   
+   
    
   }
   
@@ -80,21 +107,22 @@ this.newpassword=!this.newpassword;
   }
   OnSubmit(){
     let formData=new FormData;
-    if(this.newpasswordvalue!=""){
-      this.employee.employeePassword=this.newpasswordvalue;
-    }else{
+    if(this.newpasswordvalue===""){
       this.employee.employeePassword=this.currentpassword;
+      }else{
+      this.employee.employeePassword=this.newpasswordvalue;
     }
-    if(this.dob!=this.employee.DOB){
-this.DOBtoString=this.employee.DOB.toLocaleDateString();
-    }else{
-      this.DOBtoString=JSON.stringify(this.employee.DOB);
-    }
-    if(this.doj!=this.employee.DOJ){
-      this.DOJtoString=this.employee.DOJ.toLocaleDateString();
-          }else{
-            this.DOJtoString=JSON.stringify(this.employee.DOJ);
-          }
+//     if(this.dob!=this.employee.DOB){
+// this.DOBtoString=this.employee.DOB.toLocaleDateString();
+//     }else{
+//       this.DOBtoString=JSON.stringify(this.employee.DOB);
+//     }
+//     if(this.doj!=this.employee.DOJ){
+//       this.DOJtoString=this.employee.DOJ.toLocaleDateString();
+//           }else{
+//             this.DOJtoString=JSON.stringify(this.employee.DOJ);
+//           }
+
     if(this.countfilelength >0){
       if(this.selectedfile.type==="image/jpeg" || this.selectedfile.type==="image/png"){
       formData.append('userImage', this.selectedfile);
@@ -103,14 +131,21 @@ this.DOBtoString=this.employee.DOB.toLocaleDateString();
      formData.append('employeeEmail', this.employee.employeeEmail);
       formData.append('employeePassword', this.employee.employeePassword);
       formData.append('address', this.employee.address);
-     formData.append('DOB', this.DOBtoString);
-      formData.append('DOJ', this.DOJtoString);
+     formData.append('DOB', this.employee.DOB.toUTCString());
+      formData.append('DOJ', this.employee.DOJ.toUTCString());
       formData.append('adminAccess',this.employee.adminAccess);
       formData.append('fk_companyid',this.employee.fk_companyid);
       formData.append('employeeId',this.employee.employeeId);
       this.employeeservice.updateformdataEmployee(formData,this.employee.uuid).subscribe(
         (resultData:Employee)=>{
          this.router.navigate(['optical/employees/listemployees']);
+        },
+        (err)=>{
+          if(err instanceof HttpErrorResponse){
+            if(err.status===401){
+              this.router.navigateByUrl('login');
+             }
+          }
         }
         );
       }else{
@@ -122,8 +157,14 @@ this.DOBtoString=this.employee.DOB.toLocaleDateString();
       this.employeeservice.updateemployee(this.employee).subscribe(
            (resultData:Employee)=>{
             this.router.navigate(['optical/employees/listemployees']);
-           }
-           );
+           },
+           (err)=>{
+            if(err instanceof HttpErrorResponse){
+              if(err.status===401){
+                this.router.navigateByUrl('login');
+               }
+            }
+           });
     }
   
    

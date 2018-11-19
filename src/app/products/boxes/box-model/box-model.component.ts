@@ -5,6 +5,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { MatTableDataSource, MatDialog, MatSort, MatPaginator } from '@angular/material';
 import { Router } from '@angular/router';
 import { BoxesService } from 'src/app/services/boxes.service';
+import { LoginService } from 'src/app/services/login.service';
+import { Admin } from 'src/app/models/admin';
 
 @Component({
   selector: 'app-box-model',
@@ -13,18 +15,25 @@ import { BoxesService } from 'src/app/services/boxes.service';
 })
 export class BoxModelComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'index2','index3','index4','index5','index6','edit'];
-  // dataSource: MatTableDataSource<FrameMaterial>;
+  displayedColumns: string[] = ['id', 'name','boxmodel','quantity','retailerprice','wholesalerprice','edit'];
   public boxes: Array<Boxes> = [];
-  public dataSource = new MatTableDataSource<Boxes>(this.boxes);
+  editHidden:boolean=false;
+  addHidden:boolean=false;
+   dataSource : MatTableDataSource<Boxes>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private boxesService:BoxesService,private router:Router,public dialog: MatDialog) {
+  constructor(private boxesService:BoxesService,private loginservice:LoginService,private router:Router,public dialog: MatDialog) {
     
   }
 
-  ngOnInit(){
+  ngOnInit(){ 
+    this.loginservice.getUserName().subscribe((data:Admin)=>{
+    if(data.Identifier==="employee"){
+     this.editHidden=true;
+     this.addHidden=true;
+    }
+    });
     this.boxesService.getallBoxes().subscribe(
       (data:Array<Boxes>)=>{
         this.boxes=data;

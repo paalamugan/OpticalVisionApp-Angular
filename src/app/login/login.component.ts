@@ -36,9 +36,8 @@ this.adminhide=false;
     this.loginservice.adminLogin(this.adminlogin)
       .subscribe(
        (res:any)=>{
+        this.router.navigate(['/optical/dashboard']);
          localStorage.setItem('token',res.token);
-         this.router.navigate(['/optical/dashboard']);
-         this.auth.setLoggedIn('admin');
        },
        err =>{
          if(err instanceof HttpErrorResponse){
@@ -56,16 +55,15 @@ this.adminhide=false;
     this.loginservice.employeeLogin(this.employeelogin)
     .subscribe(
      (res:any)=>{
-      
        if(res.Identifier === "employee-admin"){
-        localStorage.setItem('token',res.token);
         this.router.navigate(['/optical/dashboard']);
-        this.auth.setLoggedIn(res.Identifier);
-        
-       }else{
         localStorage.setItem('token',res.token);
+        // localStorage.setItem('Identifier',res.Identifier_User);
+        }else{
         this.router.navigate(['/optical/employees']);
-        this.auth.setLoggedIn(res.Identifier);
+        localStorage.setItem('token',res.token);
+        
+        // this.auth.setLoggedIn(res.Identifier);
        }
         
      },

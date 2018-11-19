@@ -4,6 +4,9 @@ import { LoginService } from '../services/login.service';
 import { CompanySignup } from '../models/companysignup';
 import { Data } from '../models/data';
 import { Admin } from '../models/admin';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { Utils } from '../utils';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -25,12 +28,20 @@ userCompanyname:string='';
   }
 
 
-	constructor(private media: ObservableMedia,private loginservice:LoginService,private data1:Data) { }
+	constructor(private media: ObservableMedia,private loginservice:LoginService,private router:Router,private data1:Data) { }
 
 	ngOnInit() {
         this.loginservice.getUserName().subscribe((data:Admin)=>{
             this.userCompanyname=data.companyname;
-          });
+          },
+          (err)=>{
+            if(err instanceof HttpErrorResponse){
+              if(err.status===401){
+                this.router.navigateByUrl('login');
+               }
+            }
+          }
+          );
           
 		this.media.subscribe((mediaChange: MediaChange) => {
             this.toggleView();

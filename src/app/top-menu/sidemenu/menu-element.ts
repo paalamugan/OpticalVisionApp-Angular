@@ -114,7 +114,51 @@ export const adminmenus = [
                             }
                         ]
         },
-    
+        {
+            'name'   : 'Products',
+            'icon'   : './assets/icon/product.svg',
+            'open'   : false,
+            'link'   : false,
+            'sub'    :  [
+                            {
+                                'name': 'Glasses',
+                                'icon': './assets/icon/Spects.svg',
+                                'open'   : false,
+                                'link':false,
+                                'sub':[
+                                    {
+                                        'name': 'Frame Model',
+                                        'icon': './assets/icon/frame_type.svg',
+                                        'open' : false,
+                                        'link':'products/glasses/frame_model',
+                                        'Tooltip':'FrameModel'
+                                    },
+                                        {
+                                            'name': 'Lens Type',
+                                            'icon': './assets/icon/Lens.svg',
+                                            'open': false,
+                                            'link':'products/glasses/lens_type',
+                                            'Tooltip':'LensType'
+                                        },
+                                        {
+                                            'name': 'Brand',
+                                            'icon': './assets/icon/Brand.svg',
+                                            'open'   : false,
+                                            'link':'products/brands/brand',
+                                            'Tooltip':'Brand'
+                                        },
+                                
+                            ]
+                            },
+                            {
+                                'name': 'Boxes',
+                                'icon': './assets/icon/Box.svg',
+                                'open'   : false,
+                                'link':'products/boxes/box_model',
+                                'Tooltip':'Boxes'
+                            }
+                        ]
+        },
     // {
     //     'name': 'Material Widget',
     //     'icon': 'widgets',

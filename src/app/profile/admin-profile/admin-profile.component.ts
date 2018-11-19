@@ -18,7 +18,7 @@ export class AdminProfileComponent implements OnInit {
   constructor(private signupService:SignupService,private loginservice:LoginService,private router:Router,private snackBar:MatSnackBar) { }
 company:CompanySignup=new CompanySignup('','',1,'','','','','','','');
 currentCompany:CompanySignup=new CompanySignup('','',1,'','','','','','','');
-profile:Admin=new Admin('','','','','',this.company);
+profile:Admin=new Admin('','','','','',this.company,'');
 userimage:any;
 currentpassword:string;
 Identifier:string;
@@ -41,7 +41,15 @@ adminshow_2:boolean=true;
         this.router.navigateByUrl('login');
       }
      
-    });
+    },
+    (err)=>{
+      if(err instanceof HttpErrorResponse){
+        if(err.status===401){
+          this.router.navigateByUrl('login');
+         }
+      }
+    }
+    );
    
   }
   editProfile(){
@@ -109,7 +117,11 @@ adminshow_2:boolean=true;
             this.router.navigateByUrl('login');
           },
           (err)=>{
-            console.log(err);
+            if(err instanceof HttpErrorResponse){
+              if(err.status==300 || err.status===401){
+              this.router.navigateByUrl('login');
+              }
+            }
                     }
           );
          }else{
@@ -124,7 +136,11 @@ this.snackBar.open("Select Only Jpeg and Png format Image","Alert",{
         this.router.navigateByUrl('login');
         },
         (err)=>{
-console.log(err);
+          if(err instanceof HttpErrorResponse){
+            if(err.status==300 || err.status===401){
+            this.router.navigateByUrl('login');
+            }
+          }
         }
         );
     }
@@ -134,5 +150,22 @@ console.log(err);
     this.adminshow_2=true;
     this.adminshow_1=false;
     this.profiledetails="Admin Profile Details";
+  }
+  deleteProfile(){
+    if(confirm('Are You Sure to Delete this Company ?') === true){
+      this.signupService.deleteCompany(this.profile.companyId).subscribe(data=>{
+        this.router.navigateByUrl('login');
+       },
+       
+       (err)=>{
+        if(err instanceof HttpErrorResponse){
+          if(err.status===401){
+          this.router.navigateByUrl('login');
+          }
+        }
+       })
+    }
+
+   
   }
 }

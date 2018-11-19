@@ -12,7 +12,7 @@
               </div>
               <div fxFlex="50">
                   <mat-form-field class="example-full-width">
-                      <input matInput type="text" #nameInput="matInput" #nameSelect (focus)="$event.target.select()" placeholder="Brand Name" [(ngModel)]="brand.name" name="name" #name="ngModel" required autofocus>
+                      <input matInput type="text" #nameInput="matInput" #nameSelect (focus)="$event.target.select()" placeholder="Brand Name" [(ngModel)]="brand.name" name="name" #name="ngModel" autofocus required>
                     </mat-form-field>
                 
                     <div *ngIf="name.invalid && (name.dirty || name.touched)" class="mat-body-1 center-align">

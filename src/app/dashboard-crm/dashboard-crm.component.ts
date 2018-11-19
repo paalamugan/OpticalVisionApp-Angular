@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from '../services/login.service';
+import { Admin } from '../models/admin';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-dashboard-crm',
@@ -24,9 +27,14 @@ export class DashboardCrmComponent implements OnInit {
         { country: 'Brazil', sales: 100, percentage: '2.50%' },
     ];
 
-    constructor() { }
+    constructor(private loginservice:LoginService,private router:Router) { }
 
     ngOnInit() {
+        this.loginservice.getUserName().subscribe((data:Admin)=>{
+            if(data.Identifier==="employee"){
+              this.router.navigateByUrl('login');
+            }
+            });
     }
 
 }

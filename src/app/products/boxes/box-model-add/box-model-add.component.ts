@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { Boxes } from 'src/app/models/boxes';
 import { BoxesService } from 'src/app/services/boxes.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { LoginService } from 'src/app/services/login.service';
+import { Admin } from 'src/app/models/admin';
 
 @Component({
   selector: 'app-box-model-add',
@@ -15,9 +17,14 @@ export class BoxModelAddComponent implements OnInit {
   boxes:Boxes=new Boxes('','','',1,1,1,'');
 @ViewChild('nameInput') nameInput: MatInput;
 @ViewChild('nameSelect') nameSelect: ElementRef;
-  constructor(private boxesService:BoxesService,private router:Router,private snackBar:MatSnackBar) { }
+  constructor(private boxesService:BoxesService,private loginservice:LoginService,private router:Router,private snackBar:MatSnackBar) { }
 
   ngOnInit() {
+    this.loginservice.getUserName().subscribe((data:Admin)=>{
+      if(data.Identifier==="employee"){
+        this.router.navigateByUrl('login');
+      }
+      });
   }
   OnSubmit(){
     this.boxesService.addBoxes(this.boxes).subscribe(

@@ -14,7 +14,7 @@
             </div>
             <div fxFlex="50">
                 <mat-form-field class="example-full-width">
-                    <input matInput type="text" placeholder="EmployeeName" pattern="^[a-zA-Z_ ]*$" [(ngModel)]="employee.employeeName" name="employeeName" #name="ngModel" required minlength="4">
+                    <input matInput type="text" #nameInput="matInput" #nameSelect placeholder="EmployeeName" pattern="^[a-zA-Z_ ]*$" [(ngModel)]="employee.employeeName" name="employeeName" #name="ngModel" required minlength="4">
                   </mat-form-field>
               
                   <div *ngIf="name.invalid && (name.dirty || name.touched)" class="mat-body-1 center-align">
@@ -194,7 +194,7 @@
               <div fxLayout="row" fxLayoutAlign="start start">
                 <div fxFlex="20"></div>
                 <div fxFlex="50">
-          <button mat-raised-button [disabled]="addEmployee.invalid" class="mat-subheading-2 button-style example-full-width" (click)="OnSubmit()">Save</button>
+          <button mat-raised-button type="reset" [disabled]="addEmployee.invalid" class="mat-subheading-2 button-style example-full-width" (click)="OnSubmit()">Save</button>
               </div>
             </div>
         </form>

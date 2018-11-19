@@ -5,6 +5,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
 import { FrameModelService } from 'src/app/services/frame-model.service';
 import { Router } from '@angular/router';
+import { LoginService } from 'src/app/services/login.service';
+import { Admin } from 'src/app/models/admin';
 
 @Component({
   selector: 'app-frame-model',
@@ -14,18 +16,25 @@ import { Router } from '@angular/router';
 export class FrameModelComponent implements OnInit {
 
   displayedColumns: string[] = ['id', 'brand','model','frametype', 'quantity','retailerPrice','wholesalerPrice','edit'];
-  // dataSource: MatTableDataSource<FrameMaterial>;
   public framemodels: Array<FrameModel> = [];
+  editHidden:boolean=false;
+  addHidden:boolean=false;
    dataSource : MatTableDataSource<FrameModel>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private frameModelService:FrameModelService,private router:Router,public dialog: MatDialog) {
+  constructor(private frameModelService:FrameModelService,private loginservice:LoginService,private router:Router,public dialog: MatDialog) {
     
     
   }
 
   ngOnInit() {
+    this.loginservice.getUserName().subscribe((data:Admin)=>{
+      if(data.Identifier==="employee"){
+       this.editHidden=true;
+       this.addHidden=true;
+      }
+      });
     this.frameModelService.getallFrameModel().subscribe(
       (data:Array<FrameModel>)=>{
         this.framemodels=data;

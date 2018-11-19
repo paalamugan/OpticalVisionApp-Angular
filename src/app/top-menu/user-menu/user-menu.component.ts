@@ -4,6 +4,7 @@ import { LoginService } from 'src/app/services/login.service';
 import { CompanySignup } from 'src/app/models/companysignup';
 import { Admin } from 'src/app/models/admin';
 import { Utils } from 'src/app/utils';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-user-menu',
@@ -36,17 +37,20 @@ export class UserMenuComponent implements OnInit {
     this.loginservice.getUserName().subscribe((data:Admin)=>{
       this.currentUser=data;
     if(this.currentUser.Identifier=="admin"){
-        if(this.currentUser.userImage==="null"){
-          this.userimage=false;
-                }else{
-                  this.userimage=Utils.APIURL+this.currentUser.userImage;
-                }
-        this.profileURL='/optical/profile/adminprofile/';
+       this.profileURL='/optical/profile/adminprofile/';
       }else{
         this.profileURL='/optical/profile/employeeprofile/';
        }
- 
-    });
+       this.userimage=Utils.APIURL+this.currentUser.userImage;
+    },
+    (err)=>{
+      if(err instanceof HttpErrorResponse){
+        if(err.status===401){
+          this.router.navigateByUrl('login');
+         }
+      }
+    }
+    );
   }
   nagivateurl(){
    this.router.navigate([this.profileURL]);
@@ -54,6 +58,7 @@ export class UserMenuComponent implements OnInit {
   }
   logout(){
    localStorage.removeItem('token');
+  //  localStorage.removeItem('Identifier');
 this.router.navigate(['/login']);
   }
 }

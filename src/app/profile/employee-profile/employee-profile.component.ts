@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Employee } from 'src/app/models/employee';
 import { Utils } from 'src/app/utils';
 import { CompanySignup } from 'src/app/models/companysignup';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-employee-profile',
@@ -12,7 +13,7 @@ import { CompanySignup } from 'src/app/models/companysignup';
 })
 export class EmployeeProfileComponent implements OnInit {
 
-  constructor(private loginservice:LoginService,private router:Router) { }
+  
   company:CompanySignup;
   doj:Date;
   dob:Date;
@@ -21,14 +22,11 @@ Identifier:string;
 username:string;
 companyname:string;
 userimage:any;
+constructor(private loginservice:LoginService,private router:Router) { }
   ngOnInit() {
     this.loginservice.getUserName().subscribe((data:any)=>{
       if(data.Identifier=="employee" || data.Identifier=="employee-admin"){
-        // if(data.userImage==="null"){
-        //   this.userimage=false;
-        // }else{
-          this.userimage=Utils.APIURL+data.userImage;
-        // }
+       this.userimage=Utils.APIURL+data.userImage;
         this.Identifier=data.Identifier;
         this.username=data.username;
         this.companyname=data.companyname;
@@ -37,7 +35,15 @@ userimage:any;
           this.router.navigateByUrl('login');
       }
      
-    });
+    },
+    (err)=>{
+      if(err instanceof HttpErrorResponse){
+        if(err.status===401){
+          this.router.navigateByUrl('login');
+         }
+      }
+    }
+    );
   }
 
 }

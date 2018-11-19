@@ -5,7 +5,7 @@
       <h1 class="mat-headline">Frame Model List</h1>
     </mat-toolbar>
     <div style="margin: 10px;">
-        <button mat-raised-button class="mat-subheading-2 button-style" routerLink="add"><mat-icon>add</mat-icon><span style="margin: 5px;">New</span></button>
+        <button mat-raised-button [hidden]="addHidden" class="mat-subheading-2 button-style" routerLink="add"><mat-icon>add</mat-icon><span style="margin: 5px;">New</span></button>
     </div>
 <mat-form-field>
   <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
@@ -47,16 +47,16 @@
 
     <ng-container matColumnDef="retailerPrice">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Retailer Price </th>
-      <td mat-cell *matCellDef="let element"> {{element.retailerPrice}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.retailerPrice | currency:'INR'}} </td>
     </ng-container>
 
     <ng-container matColumnDef="wholesalerPrice">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> WholeSaler Price </th>
-      <td mat-cell *matCellDef="let element"> {{element.wholesalerPrice}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.wholesalerPrice | currency:'INR'}} </td>
     </ng-container>
     <ng-container matColumnDef="edit">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
-      <td mat-cell *matCellDef="let element"><mat-icon class="cursor" (click)="editFrameModel(element)">edit</mat-icon> </td>
+      <th mat-header-cell *matHeaderCellDef [hidden]="editHidden"> </th>
+      <td mat-cell *matCellDef="let element" [hidden]="editHidden"><mat-icon class="cursor" (click)="editFrameModel(element)">edit</mat-icon> </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

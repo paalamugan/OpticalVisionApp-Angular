@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { MatSnackBar, MatInput } from '@angular/material';
 import { Brand } from 'src/app/models/brand';
 import { HttpErrorResponse } from '@angular/common/http';
+import { LoginService } from 'src/app/services/login.service';
+import { Admin } from 'src/app/models/admin';
 
 @Component({
   selector: 'app-brand-add',
@@ -14,9 +16,14 @@ export class BrandAddComponent implements OnInit {
 brand:Brand=new Brand('','','','');
 @ViewChild('nameInput') nameInput: MatInput;
 @ViewChild('nameSelect') nameSelect: ElementRef;
-  constructor(private brandService:BrandService,private router:Router,private snackBar:MatSnackBar) { }
+  constructor(private brandService:BrandService,private loginservice:LoginService,private router:Router,private snackBar:MatSnackBar) { }
 
   ngOnInit() {
+    this.loginservice.getUserName().subscribe((data:Admin)=>{
+      if(data.Identifier==="employee"){
+        this.router.navigateByUrl('login');
+      }
+      });
   }
   OnSubmit(form){
     

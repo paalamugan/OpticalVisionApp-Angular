@@ -24,4 +24,8 @@ export class SignupService {
   public UpdateCompany(company:CompanySignup) {
     return this.httpClient.put(`${Utils.updateCompanyURL()}`+`/${company.uuid}`,company);
   }
+  public deleteCompany(uuid:string) {
+    return this.httpClient.delete(`${Utils.deleteSignupURL()}`+`/${uuid}`);
+  }
+  
 }

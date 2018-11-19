@@ -41,6 +41,10 @@ export class Utils {
     public static updateCompanyURL() {
         return COMPANY_URL + UPDATE_ACTION;
     }
+    public static deleteSignupURL() {
+        return COMPANY_URL + DELETE_ACTION;
+    }
+    
 
     
     /*loginurl*/
@@ -72,7 +76,10 @@ public static loggedIn(){
 }
 public static getToken(){
     return localStorage.getItem('token');
-}   
+}
+// public static getIdentifier(){
+//     return localStorage.getItem('Identifier');
+// }    
 
 //employee details Api method
 public static addemployeeURL() {
@@ -116,6 +123,10 @@ public static getBrandURL() {
 public static updateBrandURL() {
     return BRAND_URL + UPDATE_ACTION;
 }
+public static deleteBrandURL() {
+    return BRAND_URL + DELETE_ACTION;
+}
+
 //framemodel Api methods
 public static addframemodelURL() {
     return FRAME_MODEL_URL + ADD_ACTION;

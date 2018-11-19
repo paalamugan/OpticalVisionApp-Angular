@@ -50,7 +50,7 @@ import {
     FlexLayoutModule,
     MDBBootstrapModule.forRoot()
   ],
-  providers: [AuthGuard,Data,
+  providers: [AuthGuard,Data,AuthService,
     {
     provide:HTTP_INTERCEPTORS,
     useClass:TokenInterceptorService,

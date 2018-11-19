@@ -8,7 +8,7 @@ import { EmployeeProfileComponent } from './employee-profile/employee-profile.co
 
 const profileroutes: Routes = [
   	{ path: 'adminprofile', component: AdminProfileComponent, canActivate:[AuthGuard]},
-      { path: 'employeeprofile', component: EmployeeProfileComponent,canActivate:[AuthGuard] },
+      { path: 'employeeprofile', component: EmployeeProfileComponent,canLoad:[AuthGuard] },
   	
 ];
 

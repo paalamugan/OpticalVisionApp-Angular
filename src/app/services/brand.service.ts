@@ -20,4 +20,8 @@ export class BrandService {
   public updateBrand(brand:Brand){
     return this.httpClient.put(`${Utils.updateBrandURL()}`+`/${brand.uuid}`,brand);
   }
+  public deleteBrand(uuid:string){
+    return this.httpClient.delete(`${Utils.deleteBrandURL()}`+`/${uuid}`);
+  }
+  
 }

@@ -10,6 +10,8 @@ import {map, startWith} from 'rxjs/operators';
 import { FrameType } from 'src/app/models/enums/frame-type';
 import { MatSnackBar, MatInput } from '@angular/material';
 import { FrameModelService } from 'src/app/services/frame-model.service';
+import { Admin } from 'src/app/models/admin';
+import { LoginService } from 'src/app/services/login.service';
 @Component({
   selector: 'app-frame-model-add',
   templateUrl: './frame-model-add.component.html',
@@ -27,9 +29,14 @@ export class FrameModelAddComponent implements OnInit {
 @ViewChild('nameSelect') nameSelect: ElementRef;
 //  options: string[] = ['One', 'Two', 'Three'];
  filteredOptions: Observable<Brand[]>;
-  constructor(private brandService:BrandService,private framemodelService:FrameModelService,private router:Router,private snackBar:MatSnackBar ) { }
+  constructor(private brandService:BrandService,private loginservice:LoginService,private framemodelService:FrameModelService,private router:Router,private snackBar:MatSnackBar ) { }
 
   ngOnInit() {
+    this.loginservice.getUserName().subscribe((data:Admin)=>{
+      if(data.Identifier==="employee"){
+        this.router.navigateByUrl('login');
+      }
+      });
     var x = FrameType;
     var options = Object.keys(x);
     this.frametypes = options.slice(options.length / 2);

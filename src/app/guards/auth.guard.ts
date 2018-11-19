@@ -1,23 +1,24 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router, CanActivateChild } from '@angular/router';
+import { CanActivate, Router, CanActivateChild, ActivatedRouteSnapshot, RouterStateSnapshot, CanLoad } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Utils } from '../utils';
 import { LoginService } from '../services/login.service';
 import { Admin } from '../models/admin';
 import { AuthService } from '../services/auth.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Data } from '../models/data';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate,CanActivateChild {
-  constructor(private router:Router,private auth:AuthService ){
+export class AuthGuard implements CanActivate,CanActivateChild{
+  constructor(private router:Router,private auth:AuthService ,private data:Data,private loginservice:LoginService ){
    
+
   }
 
   canActivate():boolean{
-    console.log(this.auth.isLoggedIn);
-   // if(Utils.loggedIn() && (this.auth.isLoggedIn=='admin' || this.auth.isLoggedIn=='employee-admin')){
-      if(Utils.loggedIn()){
+   if(Utils.loggedIn()){
       return true;
     }
     else{
@@ -25,18 +26,6 @@ export class AuthGuard implements CanActivate,CanActivateChild {
       this.router.navigate(['/login']);
       return false;
     }
-    // this.loginservice.getUserName().subscribe((data:Admin)=>{
-    //   this.Identifier=data.Identifier;
-    //   console.log(data.Identifier);
-    
-    // });
-    // if(this.Identifier=="admin" ||this.Identifier=="employee"){
-    //   return true;
-    // }else{
-    //   localStorage.removeItem('token');
-    //   this.router.navigate(['/login']);
-    //   return false;
-    // }
   }
   canActivateChild():boolean{
    
@@ -49,4 +38,14 @@ export class AuthGuard implements CanActivate,CanActivateChild {
       return false;
     }
   }
+  // canLoad():boolean{
+  //   if(Utils.loggedIn()){
+  //     return true;
+  //   }
+  //   else{
+  //     localStorage.removeItem('token');
+  //     this.router.navigate(['/login']);
+  //     return false;
+  //   }
+  // }
 }

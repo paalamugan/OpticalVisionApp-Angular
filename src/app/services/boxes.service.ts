@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Boxes } from '../models/boxes';
 import { Utils } from '../utils';
 
@@ -7,11 +7,13 @@ import { Utils } from '../utils';
   providedIn: 'root'
 })
 export class BoxesService {
-
-  constructor(private httpClient: HttpClient) { }
+  headers: any;
+  constructor(private httpClient: HttpClient) { 
+    this.headers = new HttpHeaders().set('content-type', 'application/json');
+  }
   
   public addBoxes(boxes:Boxes){
-    return this.httpClient.post(`${Utils.addBoxesURL()}`,boxes);
+    return this.httpClient.post(`${Utils.addBoxesURL()}`,boxes,(this.headers));
   }
   public getallBoxes(){
     return this.httpClient.get(`${Utils.getallBoxesURL()}`);

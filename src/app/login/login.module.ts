@@ -17,6 +17,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule , ReactiveFormsModule} from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptorService } from '../guards/token-interceptor.service';
+import { SharedService } from '../services/shared.service';
 const appRoutes: Routes = [
     { path: '', component: LoginComponent },
 ]

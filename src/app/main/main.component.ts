@@ -28,9 +28,11 @@ userCompanyname:string='';
   }
 
 
-	constructor(private media: ObservableMedia,private loginservice:LoginService,private router:Router,private data1:Data) { }
+	constructor(private media: ObservableMedia,private loginservice:LoginService,private router:Router,private data:Data) {
+   }
 
 	ngOnInit() {
+  
         this.loginservice.getUserName().subscribe((data:Admin)=>{
             this.userCompanyname=data.companyname;
           },

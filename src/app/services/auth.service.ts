@@ -11,9 +11,9 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
  loggedIn:boolean;
-  
-  constructor(private httpClient:HttpClient,private loginservice:LoginService,private router:Router) { 
-    
+
+  constructor(private httpClient:HttpClient,private loginservice:LoginService,private router:Router) {
+   
   }
   // setLoggedIn(value:string){
   //   this.loggedIn=value;
@@ -21,10 +21,11 @@ export class AuthService {
    public getDummuyValue(body:any){
     return this.httpClient.post(`${Utils.getDummyURL()}`,body);
   }
+
   public getLoggedIn():boolean{
     this.httpClient.get(`${Utils.getUserNameURL()}`).subscribe((data:Admin)=>{
      if(data.Identifier==="admin" || data.Identifier==="employee-admin"){
-    
+        console.log("data",data);
      }else{
        this.router.navigateByUrl('login');
      }

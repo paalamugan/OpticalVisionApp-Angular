@@ -12,7 +12,7 @@ import { Data } from '../models/data';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate,CanActivateChild{
-  constructor(private router:Router,private auth:AuthService ,private data:Data,private loginservice:LoginService ){
+  constructor(private router:Router){
    
 
   }

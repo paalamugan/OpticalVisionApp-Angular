@@ -34,7 +34,7 @@ import { Ng2OdometerModule } from 'ng2-odometer';
     MatTabsModule,
     MatToolbarModule,
     MatListModule,
-    Ng2OdometerModule,
+    Ng2OdometerModule.forRoot(),
     RoundProgressModule,
     MatMenuModule,
     MatChipsModule,

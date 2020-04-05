@@ -26,6 +26,7 @@ import { TokenInterceptorService } from '../guards/token-interceptor.service';
 import { AuthService } from '../services/auth.service';
 import { ForgetpasswordComponent } from '../forget/forgetpassword/forgetpassword.component';
 import { Data } from '../models/data';
+import { SharedService } from '../services/shared.service';
 @NgModule({
     imports: [
         CommonModule,
@@ -40,7 +41,7 @@ import { Data } from '../models/data';
         PerfectScrollbarModule,
     ],
     declarations: [MainComponent],
-    providers: [AuthGuard,Data,
+    providers: [AuthGuard,Data,AuthService,
         {
             provide: PERFECT_SCROLLBAR_CONFIG,
             useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG

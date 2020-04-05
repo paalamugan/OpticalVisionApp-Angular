@@ -7,6 +7,7 @@ import { AuthGuard } from '../guards/auth.guard';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptorService } from '../guards/token-interceptor.service';
 import { ForgetpasswordComponent } from '../forget/forgetpassword/forgetpassword.component';
+import { SharedService } from '../services/shared.service';
 
 const routes: Routes = [   
     {path: 'optical', loadChildren: '../main/main.module#MainModule'},

@@ -24,9 +24,9 @@
             ],
             "styles": [
                "node_modules/angular-bootstrap-md/scss/bootstrap/bootstrap.scss",
-              "node_modules/angular-bootstrap-md/scss/mdb-free.scss",
-              "src/theme/theme.scss",
-              "src/theme/typography.scss"
+                "node_modules/angular-bootstrap-md/scss/mdb-free.scss",
+                "src/theme/theme.scss",
+                "src/theme/typography.scss"
               
             ],
             "scripts": [

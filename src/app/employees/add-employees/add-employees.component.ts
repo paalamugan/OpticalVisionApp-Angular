@@ -8,6 +8,7 @@ import { MatSnackBar, MatDatepickerInputEvent, MatInput } from '@angular/materia
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { Data } from 'src/app/models/data';
 
 @Component({
   selector: 'app-add-employees',
@@ -26,8 +27,10 @@ export class AddEmployeesComponent implements OnInit {
   today = new Date();
   minDate = new Date(this.today);
   @ViewChild('nameInput') nameInput: MatInput;
-@ViewChild('nameSelect') nameSelect: ElementRef;
-  constructor(private employeeservice:EmployeeService,private loginservice:LoginService,private authservice:AuthService,private router:Router,private snackBar:MatSnackBar) { }
+  @ViewChild('nameSelect') nameSelect: ElementRef;
+  constructor(private employeeservice:EmployeeService,private loginservice:LoginService,private authservice:AuthService,private router:Router,private snackBar:MatSnackBar, private data:Data) {
+    // console.log("datat storage",data.storage)
+   }
 
   ngOnInit() {
     ;( function ( document, window, index )

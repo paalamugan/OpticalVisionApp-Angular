@@ -19,7 +19,7 @@
       <ng-container matColumnDef="image">
         <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Image </th>
         <td mat-cell *matCellDef="let element"> 
-          <img width="100" height="90" [style.borderRadius]="'50%'" [src]="Apiurl+element.userImage || 'assets/images/avatars/noavatar.png'">
+          <img width="50" height="50" [style.borderRadius]="'50%'" [src]="Apiurl+element.userImage || 'assets/images/avatars/noavatar.png'">
           <!-- {{element.userImage}}  -->
         </td>
       </ng-container>

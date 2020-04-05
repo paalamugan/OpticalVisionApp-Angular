@@ -1,12 +1,12 @@
 @import '~compass-mixins/lib/compass/css3';
 @import '~@angular/material/theming';
- @import '../app/main/main.component.scss';
- @import '../app/top-menu/sidemenu/sidemenu.component.scss';
- @import '../app/top-menu/sidemenu-item/sidemenu-item.component.scss';
- @import '../app/dashboard-widget/dashcard/dashcard.component.scss';
- @import '../app/dashboard-widget/profile-card/profile-card.component.scss';
- @import '../app/dashboard-widget/round-progressbar/round-progressbar.component.scss';
- @import '../app/dashboard-widget/sales-list/sales-list.component.scss';
+@import '../app/main/main.component.scss';
+@import '../app/top-menu/sidemenu/sidemenu.component.scss';
+@import '../app/top-menu/sidemenu-item/sidemenu-item.component.scss';
+@import '../app/dashboard-widget/dashcard/dashcard.component.scss';
+@import '../app/dashboard-widget/profile-card/profile-card.component.scss';
+@import '../app/dashboard-widget/round-progressbar/round-progressbar.component.scss';
+@import '../app/dashboard-widget/sales-list/sales-list.component.scss';
 $mat-light-theme-background: (
   status-bar: map_get($mat-grey, 300),
   app-bar:    map_get($mat-grey, 100),

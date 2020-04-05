@@ -24,6 +24,7 @@ import {
   MatToolbarModule,MatSnackBarModule
  } from '@angular/material';
  import { FlexLayoutModule } from '@angular/flex-layout';
+import { SharedService } from './services/shared.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +51,7 @@ import {
     FlexLayoutModule,
     MDBBootstrapModule.forRoot()
   ],
-  providers: [AuthGuard,Data,AuthService,
+  providers: [AuthGuard,Data,
     {
     provide:HTTP_INTERCEPTORS,
     useClass:TokenInterceptorService,

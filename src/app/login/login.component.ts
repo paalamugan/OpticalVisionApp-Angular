@@ -6,6 +6,7 @@ import { LoginService } from '../services/login.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material';
 import { AuthService } from '../services/auth.service';
+import { SharedService } from '../services/shared.service';
 declare var $: any;
 @Component({
   selector: 'app-login',
@@ -19,7 +20,7 @@ export class LoginComponent implements OnInit {
   adminlogin:AdminLogin=new AdminLogin('','');
   employeelogin:EmployeeLogin=new EmployeeLogin('','');
 adminhide:boolean=true;
-  constructor(private router: Router,private loginservice:LoginService,private auth:AuthService,private snackBar:MatSnackBar) {
+  constructor(private router: Router,private loginservice:LoginService,private snackBar:MatSnackBar) {
   }
 
   ngOnInit() {

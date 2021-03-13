@@ -1,6 +1,6 @@
 {
   "name": "optical-vision",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -68,6 +68,6 @@
   },
   "engines": {
     "node": "8.11.1",
-    "npm": "6.4.1"
+    "npm": "5.6.0"
   }
 }

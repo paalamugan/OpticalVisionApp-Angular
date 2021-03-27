@@ -34,7 +34,7 @@ userCompanyname:string='';
 	ngOnInit() {
   
         this.loginservice.getUserName().subscribe((data:Admin)=>{
-            this.userCompanyname=data.companyname;
+            this.userCompanyname=data.companyName;
           },
           (err)=>{
             if(err instanceof HttpErrorResponse){

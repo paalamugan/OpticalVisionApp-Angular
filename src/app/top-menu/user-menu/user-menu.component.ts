@@ -14,7 +14,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class UserMenuComponent implements OnInit {
   isOpen: boolean = false;
    currentUser:Admin;
-   userimage:any;
+   avatar:string;
    name:string='No name';
    profileURL:string;
   @HostListener('document:click', ['$event', '$event.target'])
@@ -41,7 +41,7 @@ export class UserMenuComponent implements OnInit {
       }else{
         this.profileURL='/optical/profile/employeeprofile/';
        }
-       this.userimage=Utils.APIURL+this.currentUser.userImage;
+       this.avatar=this.currentUser.avatar;
     },
     (err)=>{
       if(err instanceof HttpErrorResponse){

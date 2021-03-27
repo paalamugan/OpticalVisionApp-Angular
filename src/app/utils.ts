@@ -1,14 +1,14 @@
 
 
-const API_URL = "http://localhost:9000/";
-const COMPANY_URL = API_URL + "api/visionapp/company/";
-const DUMMY_URL=API_URL+"api/visionapp/dummy/";
-const EMPLOYEE_URL = API_URL + "api/visionapp/employee/";
-const FRAME_MATERIAL_URL = API_URL + "api/visionapp/framematerial/";
-const BRAND_URL = API_URL + "api/visionapp/brand/";
-const FRAME_MODEL_URL = API_URL + "api/visionapp/framemodel/";
-const LENS_TYPE_URL = API_URL + "api/visionapp/lenstype/";
-const BOXES_URL = API_URL + "api/visionapp/boxes/";
+const API_END_POINT = "/api/visionapp";
+const COMPANY_URL = API_END_POINT + "/company/";
+const DUMMY_URL=API_END_POINT+"/dummy/";
+const EMPLOYEE_URL = API_END_POINT + "/employee/";
+const FRAME_MATERIAL_URL = API_END_POINT + "/framematerial/";
+const BRAND_URL = API_END_POINT + "/brand/";
+const FRAME_MODEL_URL = API_END_POINT + "/framemodel/";
+const LENS_TYPE_URL = API_END_POINT + "/lenstype/";
+const BOXES_URL = API_END_POINT + "/boxes/";
 
 
 const REGISTER_ACTION='register'
@@ -27,7 +27,7 @@ const FORGET_PASSWORD_ACTION ="forgetpassword";
 
 export class Utils {
     /*Signupurl*/
-    public static APIURL=API_URL;
+    public static APIURL=API_END_POINT;
     public static getSignupURL() {
         return COMPANY_URL + REGISTER_ACTION ;
     }
